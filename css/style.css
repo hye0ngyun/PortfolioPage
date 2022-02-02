@@ -247,9 +247,11 @@ a {
 .bl_about_desc {
   max-width: 600px;
   font-size: 1.6rem;
+  line-height: 22px;
 }
 .bl_about_desc > h3 {
   font-size: 4.8rem;
+  line-height: initial;
 }
 .bl_about_desc_btns {
   display: flex;
@@ -284,6 +286,20 @@ a {
 }
 .bl_contact_table_row > *:first-child {
   flex-basis: 100px;
+}
+
+/* bl_footer */
+.bl_footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+  background-color: #b2e5fc;
+  font-size: 1.6rem;
+}
+.bl_footer_desc {
+  text-align: center;
+  line-height: 24px;
 }
 
 /* @@@ helper group @@@ */
