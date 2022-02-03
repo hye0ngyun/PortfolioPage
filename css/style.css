@@ -38,6 +38,7 @@ html {
   font-size: 62.5%;
   font-family: "Noto Sans KR", "Gill Sans", "Gill Sans MT", Calibri,
     "Trebuchet MS", sans-serif;
+  background-color: #fafafa;
 }
 * {
   box-sizing: border-box;
@@ -133,14 +134,23 @@ a {
   width: 100%;
   padding: 30px;
   font-size: 1.6rem;
+  transition: 1s;
+  color: #fff;
+}
+.bl_header a {
+  color: #fff;
+  transition: 1s;
+}
+.bl_header.js_active {
+  background-color: #fffc;
+  box-shadow: 0 0 6px #333;
+}
+.bl_header.js_active a {
+  color: #333;
 }
 .bl_nav > ul {
   display: flex;
   gap: 30px;
-}
-.bl_nav > ul > li > a {
-  color: #fff;
-  text-decoration: none;
 }
 
 /* bl_banner */
