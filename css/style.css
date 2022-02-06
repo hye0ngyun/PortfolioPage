@@ -227,6 +227,10 @@ a {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 /* .bl_proejects_slide_items_outer {
   position: relative;
@@ -245,6 +249,7 @@ a {
   align-items: center;
   flex: 0 0 auto;
   position: relative;
+  left: 0;
   transition: 1s;
 }
 .bl_projects_slide_item.show {
@@ -254,6 +259,11 @@ a {
 /* bl_stacks */
 .bl_stacks_slide {
   position: relative;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .bl_stacks_slide_items {
   display: flex;
@@ -319,6 +329,7 @@ a {
   font-size: 1.6rem;
   list-style-type: disc;
   padding-inline-start: 20px;
+  line-height: 2.4rem;
 }
 
 /* bl_about */
