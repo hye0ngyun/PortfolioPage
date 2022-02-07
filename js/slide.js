@@ -54,10 +54,13 @@
   })
   slide_items.addEventListener('touchend', (e) => {
     end = e.changedTouches[0].pageX;
-    if ((end - start) > 0) {
-      leftMove();
-    } else {
+
+    if ((end - start) === 0) {
+
+    } else if ((end - start) < 0) {
       rigthMove();
+    } else {
+      leftMove();
     }
   })
 
@@ -73,10 +76,12 @@
   slide_items.addEventListener('mouseup', (e) => {
     // console.log(`end: ${e.pageX}`);
     end = e.pageX;
-    if (start > end) {
-      rigthMove();
-    } else {
+    if (start === end) {
+
+    } else if (start < end) {
       leftMove();
+    } else {
+      rigthMove();
     }
   })
 }
