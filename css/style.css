@@ -159,6 +159,22 @@ a {
   right: 10px;
   cursor: pointer;
 }
+.el_select {
+  border: none;
+  background: none;
+  border: 2px solid var(--primary-color);
+  padding: 5px;
+  border-radius: 5px;
+}
+.el_select > option {
+  background-color: var(--primary-color);
+  border: none;
+  color: #fff;
+  padding: 5px;
+}
+.el_select > option:hover {
+  background-color: #3a3377;
+}
 
 /* @@@ block group @@@ */
 /* bl_header */
@@ -230,6 +246,7 @@ a {
   display: flex;
   gap: 10px;
   font-size: 16px;
+  align-items: center;
 }
 .bl_projects_slide {
   position: relative;
