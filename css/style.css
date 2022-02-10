@@ -92,6 +92,11 @@ a {
   padding: 0 10px;
   border-radius: 1rem;
   color: #fff;
+  gap: 3px;
+}
+.el_tag > img {
+  width: 20px;
+  cursor: pointer;
 }
 .el_toggle {
   display: flex;
@@ -233,6 +238,7 @@ a {
   -ms-user-select: none;
   user-select: none;
 }
+
 /* .bl_proejects_slide_items_outer {
   position: relative;
 } */
@@ -246,7 +252,7 @@ a {
   width: 300px;
   height: 400px;
   background-color: #6f62e5;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex: 0 0 auto;
@@ -255,6 +261,7 @@ a {
   transition: left 1s;
 }
 .bl_projects_slide_item.show {
+  display: flex;
   flex: 1 0 auto;
 }
 

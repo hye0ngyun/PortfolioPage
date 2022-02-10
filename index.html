@@ -42,10 +42,35 @@
           <div class="ly_jusitfyBetween hp_mb_30">
             <div class="bl_projects_filters">
               <span>filters</span>
+              <select name="" id="">
+                <option value="none" selected disabled>필터 선택</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="JS">JS</option>
+                <option value="Python">Python</option>
+              </select>
               <div class="bl_projects_filters_tags">
-                <span class="el_tag">HTML</span>
-                <span class="el_tag">CSS</span>
-                <span class="el_tag">JS</span>
+                <!-- <span class="el_tag"
+                  ><span>HTML</span
+                  ><img
+                    src="./img/close_white_24dp.svg"
+                    alt=""
+                    class="js_close"
+                /></span>
+                <span class="el_tag"
+                  ><span>CSS</span
+                  ><img
+                    src="./img/close_white_24dp.svg"
+                    alt=""
+                    class="js_close"
+                /></span> -->
+                <!-- <span class="el_tag"
+                  ><span>JS</span
+                  ><img
+                    src="./img/close_white_24dp.svg"
+                    alt=""
+                    class="js_close"
+                /></span> -->
               </div>
             </div>
             <div class="el_toggle">
@@ -64,11 +89,29 @@
               <img src="./img/arrow_back_ios_black_24dp.svg" alt="leftArrow" />
             </div>
             <div class="bl_projects_slide_items">
-              <div class="bl_projects_slide_item">1</div>
-              <div class="bl_projects_slide_item">2</div>
-              <div class="bl_projects_slide_item">3</div>
-              <div class="bl_projects_slide_item">4</div>
-              <div class="bl_projects_slide_item">5</div>
+              <div class="bl_projects_slide_item show" data-tag="HTML,CSS">
+                1
+                <div>HTML,CSS</div>
+              </div>
+              <div class="bl_projects_slide_item show" data-tag="HTML,CSS,JS">
+                2
+                <div>HTML,CSS,JS</div>
+              </div>
+              <div class="bl_projects_slide_item show" data-tag="Python">
+                3
+                <div>Python</div>
+              </div>
+              <div class="bl_projects_slide_item show" data-tag="JS">
+                4
+                <div>JS</div>
+              </div>
+              <div
+                class="bl_projects_slide_item show"
+                data-tag="HTML,CSS, JS, Python"
+              >
+                5
+                <div>HTML,CSS, JS, Python</div>
+              </div>
             </div>
             <div class="el_rightArrow">
               <img
@@ -181,8 +224,18 @@
                 프로젝트를 기획부터 구현, 테스트, 배포까지 해보고 싶습니다.
               </p>
               <div class="bl_about_desc_btns">
-                <a href="" class="el_btn">기술 블로그</a>
-                <a href="" class="el_btn">깃허브</a>
+                <a
+                  href="https://devinus.tistory.com/"
+                  class="el_btn"
+                  target="_blank"
+                  >기술 블로그</a
+                >
+                <a
+                  href="https://github.com/hye0ngyun"
+                  class="el_btn"
+                  target="_blank"
+                  >깃허브</a
+                >
               </div>
             </div>
           </div>
@@ -245,5 +298,85 @@
     <!-- wrap end -->
     <script src="./js/ready.js"></script>
     <script src="./js/slide.js"></script>
+    <script>
+      // {
+      //   const selectDOM = document.querySelector(
+      //     ".bl_projects_filters > select"
+      //   );
+      //   const tagsDOM = document.querySelector(".bl_projects_filters_tags");
+      //   const elem3 = document.querySelectorAll(".el_tag > .js_close");
+      //   // console.log(elem.selected);
+      //   selectDOM.addEventListener("change", function () {
+      //     // console.log(this.options[this.selectedIndex].value);
+      //     // 변경으로 선택된 값
+      //     let val = this.options[this.selectedIndex].value;
+      //     console.log(this.selectedIndex);
+      //     // 생성할 태그 앨리먼트
+      //     let innerElem = document.createElement("span");
+      //     innerElem.innerHTML = `
+      //             <span class="el_tag"
+      //             ><span>${val}</span
+      //             ><img src="./img/close_white_24dp.svg" alt=""
+      //           /></span>
+      //           `;
+      //     // tags에 생성한 태그 앨리먼트 추가
+      //     tagsDOM.appendChild(innerElem);
+      //     // console.log(innerElem.childNodes[1].childNodes[1]);
+      //     // 변경된 값에 대해 기능 필요
+      //     getSlides();
+      //     innerElem.childNodes[1].childNodes[1].addEventListener(
+      //       "click",
+      //       () => {
+      //         innerElem.remove();
+      //         // 변경된 값에 대해 기능 필요
+      //         getSlides();
+      //       }
+      //     );
+      //   });
+      //   elem3.forEach((item) => {
+      //     item.addEventListener("click", () => {
+      //       item.parentElement.remove();
+      //     });
+      //   });
+
+      //   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      //   function getFilters() {
+      //     const filtering = document.querySelectorAll(".el_tag > span");
+      //     let arr = [];
+      //     filtering.forEach((item) => {
+      //       // console.log(a);
+      //       // console.log(item.innerHTML);
+      //       arr.push(item.innerHTML);
+      //     });
+      //     return arr;
+      //   }
+      //   // let b = getFilters();
+      //   // console.log(b);
+      //   function getSlides() {
+      //     const slideItem = document.querySelectorAll(
+      //       ".bl_projects_slide_item"
+      //     );
+      //     slideItem.forEach((item) => {
+      //       let slideTags = String(item.dataset["tag"])
+      //         .split(",")
+      //         .map((i) => i.trim());
+      //       console.log(
+      //         slideTags.filter((i) => getFilters().includes(i)).length ===
+      //           getFilters().length
+      //       );
+      //       // console.log(getFilters());
+      //       if (
+      //         slideTags.filter((i) => getFilters().includes(i)).length ===
+      //         getFilters().length
+      //       ) {
+      //         item.classList.add("show");
+      //       } else {
+      //         item.classList.remove("show");
+      //       }
+      //     });
+      //   }
+      //   getSlides();
+      // }
+    </script>
   </body>
 </html>
