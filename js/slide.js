@@ -51,6 +51,12 @@
       item.style.width = slideWidth + 'px';
       item.style.left = leftOffset + 'px';
     });
+
+    // 슬라이드 프로그레스바
+    el_progress = document.querySelector('.el_slideBar_progress');
+    el_progress.style.width = ((MAX_SLIDE * (100 / slideTotalCount)) <= 100) ? ((MAX_SLIDE * (100 / slideTotalCount)) + '%') : (100 + '%');
+    console.log(MAX_SLIDE * (100 / slideTotalCount));
+    el_progress.style.left = (currShow) * (100 / slide_item.length) + '%';
   }
   {
     // DOM 최초 로드 시 슬라이드 사이즈 세팅
@@ -80,6 +86,7 @@
       leftOffset -= slideWidth;
       currShow += 1;
     }
+    el_progress.style.left = (currShow) * (100 / slide_item.length) + '%';
   }
 
   function rigthMove() {
@@ -93,6 +100,7 @@
       leftOffset += slideWidth;
       currShow -= 1;
     }
+    el_progress.style.left = (currShow) * (100 / slide_item.length) + '%';
   }
 
   // pc, mobile 좌 우 버튼 슬라이드 기능
@@ -123,11 +131,11 @@
   slide_items.addEventListener('mousedown', (e) => {
     // console.log(`start: ${e.pageX}`);
     start = e.pageX;
-  })
+  });
   // 마우스 움직인 방향에따라 객체 이동모션을 위한 리스너
   slide_items.addEventListener('mousemove', (e) => {
     // console.log(e.pageX);
-  })
+  });
   slide_items.addEventListener('mouseup', (e) => {
     // console.log(`end: ${e.pageX}`);
     end = e.pageX;
@@ -138,7 +146,7 @@
     } else {
       rigthMove();
     }
-  })
+  });
 }
 
 {
