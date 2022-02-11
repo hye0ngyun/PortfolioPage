@@ -1,125 +1,234 @@
 {
   // bl_projects slide를 위한 DOM
-  const slide_items = document.querySelector('.bl_projects_slide_items');
-  const leftArrow = document.querySelector('.el_leftArrow');
-  const rightArrow = document.querySelector('.el_rightArrow');
-  let slide_item = document.querySelectorAll('.bl_projects_slide_item.show');
-  console.log(slide_item);
-  // 슬라이드 시 조정되는 오프셋
-  let leftOffset = 0;
-  let MAX_SLIDE = 3;
-  let slideContainerWidth = slide_items.clientWidth;
-  let slideWidth = slideContainerWidth / MAX_SLIDE;
-  let center = 2;
-  let currShow = 0;
-  // max offset 최대 오프셋
-  console.log('slide_item length', slide_item.length);
-  let slideTotalCount = slide_item.length;
-  let MAX_OFFSET = (slideTotalCount - MAX_SLIDE) * slideWidth;
-  // console.log(MAX_OFFSET);
-  // console.log(slide_items.childElementCount);
-  // console.log(slide_items.children, slide_items.children[0]);
-
-  // for (let i = 0; i < MAX_SLIDE; i++) {
-  //   console.log(slide_items.children[i].classList.add('show'));
-  // }
-  function setSlideSize(init = false) {
-    slide_item = document.querySelectorAll('.bl_projects_slide_item.show');
-    if (window.innerWidth >= 1240) {
-      MAX_SLIDE = 3;
-      // slideWidth = slideContainerWidth / MAX_SLIDE;
-      if (slideTotalCount > 2 && currShow === slideTotalCount - 2) currShow -= 1;
-    } else if (slideTotalCount > 1 && window.innerWidth >= 768) {
-      MAX_SLIDE = 2;
-      // slideWidth = slideContainerWidth / MAX_SLIDE;
-      if (currShow === slideTotalCount - 1) currShow -= 1;
-    } else {
-      MAX_SLIDE = 1;
+  const blProjectsSlideItems = document.querySelector('.bl_projects_slide_items');
+  const blProjectsLeftArrow = document.querySelector('.bl_projects .el_leftArrow');
+  const blProjectsRightArrow = document.querySelector('.bl_projects .el_rightArrow');
+  let blProjectsSlideItem = document.querySelectorAll('.bl_projects_slide_item.show');
+  const blProjectsProgress = document.querySelector('.bl_projects .el_slideBar_progress');
+  class BlSlide {
+    constructor(slideSelector, setting) {
+      this.slideSelector = slideSelector;
+      this.setting = setting;
+      this.slideContainer = document.querySelector(slideSelector + '_slide_items');
+      this.slideItems = document.querySelectorAll(slideSelector + '_slide_item.show');
+      this.leftArrow = document.querySelector(slideSelector + ' .el_leftArrow');
+      this.rightArrow = document.querySelector(slideSelector + ' .el_rightArrow');
+      this.slideProgess = document.querySelector(slideSelector + ' ' + '.el_slideBar_progress');
+      this.leftOffset = 0;
+      this.maxSlide = 3;
+      this.slideContainerWidth = this.slideContainer.clientWidth;
+      this.slideItemWidth = this.slideContainerWidth / this.maxSlide;
+      this.currShow = 0;
+      this.slideTotalCount = this.slideItems.length;
+      this.maxOffset = (this.slideTotalCount - this.maxSlide) * this.slideItemWidth;
+      this.resize();
+      this.start = 0;
+      this.end = 0;
+      {
+        // binding event handler
+        this.leftArrow.addEventListener('click', () => {
+          this.leftMove();
+        });
+        this.rightArrow.addEventListener('click', () => {
+          this.rightMove();
+        })
+        this.slideContainer.addEventListener('touchstart', (e) => {
+          this.start = e.touches[0].pageX;
+        })
+        this.slideContainer.addEventListener('touchend', (e) => {
+          this.end = e.changedTouches[0].clientX;
+          if ((this.end - this.start) === 0) {
+          } else if ((this.end - this.start) < 0) {
+            this.rightMove();
+          } else {
+            this.leftMove();
+          }
+        })
+        this.slideContainer.addEventListener('mousedown', (e) => {
+          this.start = e.pageX;
+          console.log(this.start);
+        })
+        this.slideContainer.addEventListener('mouseup', (e) => {
+          this.end = e.pageX;
+          if ((this.end - this.start) === 0) {
+          } else if ((this.end - this.start) < 0) {
+            this.rightMove();
+          } else {
+            this.leftMove();
+          }
+        })
+        window.addEventListener('resize', () => {
+          this.resize();
+        })
+      }
     }
 
-    slideTotalCount = slide_item.length;
-    slideContainerWidth = slide_items.clientWidth;
-    slideWidth = slideContainerWidth / MAX_SLIDE;
-    MAX_OFFSET = (slideTotalCount - MAX_SLIDE) * slideWidth;
-    leftOffset = -(slideWidth * currShow);
+    leftMove() {
+      if (this.leftOffset < 0) {
+        this.leftOffset += this.slideItemWidth;
+        this.currShow -= 1;
+        this.slideItems.forEach((item) => {
+          item.style.left = this.leftOffset + 'px';
+        });
+        this.progress();
+      }
+
+    }
+
+    rightMove() {
+      if (this.leftOffset > -this.maxOffset) {
+        this.leftOffset -= this.slideItemWidth;
+        this.currShow += 1;
+        this.slideItems.forEach((item) => {
+          item.style.left = this.leftOffset + 'px';
+        });
+        this.progress();
+      }
+
+    }
+
+    resize() {
+      if (window.innerWidth >= 1240) {
+        this.maxSlide = 3;
+        if (this.slideTotalCount > 2 && this.currShow === this.slideTotalCount - 2) this.currShow -= 1;
+      } else if (this.slideTotalCount > 1 && window.innerWidth >= 768) {
+        this.maxSlide = 2;
+        if (this.currShow === this.slideTotalCount - 1) this.currShow -= 1;
+      } else {
+        this.maxSlide = 1;
+      }
+
+      this.leftOffset = 0;
+      this.slideContainerWidth = this.slideContainer.clientWidth;
+      this.slideItemWidth = this.slideContainerWidth / this.maxSlide;
+      this.currShow = 0;
+      this.slideTotalCount = this.slideItems.length;
+      this.maxOffset = (this.slideTotalCount - this.maxSlide) * this.slideItemWidth;
+      this.progress();
+    }
+
+    progress() {
+      this.slideProgess.style.width = ((this.maxSlide * (100 / this.slideTotalCount)) <= 100) ? ((this.maxSlide * (100 / this.slideTotalCount)) + '%') : (100 + '%');
+      // console.log(this.maxSlide * (100 / slideTotalCount));
+      this.slideProgess.style.left = (this.currShow) * (100 / this.slideTotalCount) + '%';
+    }
+
+
+  }
+  const bl_stacks_slide = new BlSlide('.bl_stacks');
+
+  // bl_stacks slide를 위한 DOM
+  const blStacksSlideItems = document.querySelector('.bl_stacks_slide_items');
+  let slide_qwe = document.querySelectorAll('.bl_stacks_slide_item');
+
+  // 슬라이드 시 조정되는 오프셋
+  let leftOffset = 0;
+  let maxSlide = 3;
+  let slideContainerWidth = blProjectsSlideItems.clientWidth;
+  let slideItemWidth = slideContainerWidth / maxSlide;
+  let currShow = 0;
+  let slideTotalCount = blProjectsSlideItem.length;
+  let maxOffset = (slideTotalCount - maxSlide) * slideItemWidth;
+
+  function setSlideSize(init = false) {
+    blProjectsSlideItem = document.querySelectorAll('.bl_projects_slide_item.show');
+    slide_qwe = document.querySelectorAll('.bl_stacks_slide_item');
+    if (window.innerWidth >= 1240) {
+      maxSlide = 3;
+      // slideItemWidth = slideContainerWidth / maxSlide;
+      if (slideTotalCount > 2 && currShow === slideTotalCount - 2) currShow -= 1;
+    } else if (slideTotalCount > 1 && window.innerWidth >= 768) {
+      maxSlide = 2;
+      // slideItemWidth = slideContainerWidth / maxSlide;
+      if (currShow === slideTotalCount - 1) currShow -= 1;
+    } else {
+      maxSlide = 1;
+    }
+
+    slideTotalCount = blProjectsSlideItem.length;
+    slideContainerWidth = blProjectsSlideItems.clientWidth;
+    slideItemWidth = slideContainerWidth / maxSlide;
+    maxOffset = (slideTotalCount - maxSlide) * slideItemWidth;
+    leftOffset = -(slideItemWidth * currShow);
     if (init === true) {
       leftOffset = 0;
       currShow = 0;
     }
 
-    slide_item.forEach((item) => {
-      item.style.width = slideWidth + 'px';
+    blProjectsSlideItem.forEach((item) => {
+      item.style.width = slideItemWidth + 'px';
       item.style.left = leftOffset + 'px';
     });
+    slide_qwe.forEach((item) => {
+      item.style.width = slideItemWidth + 'px';
+      item.style.left = leftOffset + 'px';
+    })
 
-    // 슬라이드 프로그레스바
-    el_progress = document.querySelector('.el_slideBar_progress');
-    el_progress.style.width = ((MAX_SLIDE * (100 / slideTotalCount)) <= 100) ? ((MAX_SLIDE * (100 / slideTotalCount)) + '%') : (100 + '%');
-    console.log(MAX_SLIDE * (100 / slideTotalCount));
-    el_progress.style.left = (currShow) * (100 / slide_item.length) + '%';
+    // bl_projects 슬라이드 프로그레스바
+    blProjectsProgress.style.width = ((maxSlide * (100 / slideTotalCount)) <= 100) ? ((maxSlide * (100 / slideTotalCount)) + '%') : (100 + '%');
+    console.log(maxSlide * (100 / slideTotalCount));
+    blProjectsProgress.style.left = (currShow) * (100 / blProjectsSlideItem.length) + '%';
   }
-  {
-    // DOM 최초 로드 시 슬라이드 사이즈 세팅
-    document.addEventListener('DOMContentLoaded', () => {
-      setSlideSize();
-    });
-  }
+
+  // DOM 최초 로드 시 슬라이드 사이즈 세팅
+  document.addEventListener('DOMContentLoaded', () => {
+    setSlideSize();
+  });
 
   // console.log(slideContainerWidth / 3);
   // 윈도우 크기에 따라 슬라이드 반응형으로 사이즈 조절
   window.addEventListener('resize', () => {
     setSlideSize();
   });
-  // slide_item.forEach((item) => {
+  // blProjectsSlideItem.forEach((item) => {
   //   item.style.width =
   // })
 
   // slide move function decalration
   function leftMove() {
-    leftOffset += slideWidth;
+    leftOffset += slideItemWidth;
     currShow -= 1;
     if (leftOffset <= 0) {
-      slide_item.forEach((item) => {
+      blProjectsSlideItem.forEach((item) => {
         item.style.left = leftOffset + 'px';
       });
     } else {
-      leftOffset -= slideWidth;
+      leftOffset -= slideItemWidth;
       currShow += 1;
     }
-    el_progress.style.left = (currShow) * (100 / slide_item.length) + '%';
+    blProjectsProgress.style.left = (currShow) * (100 / blProjectsSlideItem.length) + '%';
   }
 
   function rigthMove() {
-    leftOffset -= slideWidth;
+    leftOffset -= slideItemWidth;
     currShow += 1;
-    if (leftOffset >= -MAX_OFFSET) {
-      slide_item.forEach((item) => {
+    if (leftOffset >= -maxOffset) {
+      blProjectsSlideItem.forEach((item) => {
         item.style.left = leftOffset + 'px';
       });
     } else {
-      leftOffset += slideWidth;
+      leftOffset += slideItemWidth;
       currShow -= 1;
     }
-    el_progress.style.left = (currShow) * (100 / slide_item.length) + '%';
+    blProjectsProgress.style.left = (currShow) * (100 / blProjectsSlideItem.length) + '%';
   }
 
   // pc, mobile 좌 우 버튼 슬라이드 기능
-  leftArrow.addEventListener('click', () => leftMove());
-  rightArrow.addEventListener('click', () => rigthMove());
+  blProjectsLeftArrow.addEventListener('click', () => leftMove());
+  blProjectsRightArrow.addEventListener('click', () => rigthMove());
 
   // 터치, 드래그 시 계산될 start, end값
   let start = 0;
   let end = 0;
 
   // mobile 터치 스와이프 슬라이드 기능
-  slide_items.addEventListener('touchstart', (e) => {
+  blProjectsSlideItems.addEventListener('touchstart', (e) => {
     start = e.touches[0].pageX;
   })
-  slide_items.addEventListener('touchend', (e) => {
+  blProjectsSlideItems.addEventListener('touchend', (e) => {
     end = e.changedTouches[0].pageX;
 
     if ((end - start) === 0) {
-
     } else if ((end - start) < 0) {
       rigthMove();
     } else {
@@ -128,15 +237,15 @@
   })
 
   // pc 마우스 드래그 앤 드랍 슬라이드 기능
-  slide_items.addEventListener('mousedown', (e) => {
+  blProjectsSlideItems.addEventListener('mousedown', (e) => {
     // console.log(`start: ${e.pageX}`);
     start = e.pageX;
   });
   // 마우스 움직인 방향에따라 객체 이동모션을 위한 리스너
-  slide_items.addEventListener('mousemove', (e) => {
+  blProjectsSlideItems.addEventListener('mousemove', (e) => {
     // console.log(e.pageX);
   });
-  slide_items.addEventListener('mouseup', (e) => {
+  blProjectsSlideItems.addEventListener('mouseup', (e) => {
     // console.log(`end: ${e.pageX}`);
     end = e.pageX;
     if (start === end) {
