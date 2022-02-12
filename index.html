@@ -51,26 +51,13 @@
               </select>
               <div class="bl_projects_filters_tags">
                 <!-- <span class="el_tag"
-                  ><span>HTML</span
+                  ><span>somethin</span
                   ><img
                     src="./img/close_white_24dp.svg"
                     alt=""
                     class="js_close"
                 /></span>
-                <span class="el_tag"
-                  ><span>CSS</span
-                  ><img
-                    src="./img/close_white_24dp.svg"
-                    alt=""
-                    class="js_close"
-                /></span> -->
-                <!-- <span class="el_tag"
-                  ><span>JS</span
-                  ><img
-                    src="./img/close_white_24dp.svg"
-                    alt=""
-                    class="js_close"
-                /></span> -->
+                -->
               </div>
             </div>
             <div class="el_toggle">
@@ -305,85 +292,5 @@
     <!-- wrap end -->
     <script src="./js/ready.js"></script>
     <script src="./js/slide.js"></script>
-    <script>
-      // {
-      //   const selectDOM = document.querySelector(
-      //     ".bl_projects_filters > select"
-      //   );
-      //   const tagsDOM = document.querySelector(".bl_projects_filters_tags");
-      //   const elem3 = document.querySelectorAll(".el_tag > .js_close");
-      //   // console.log(elem.selected);
-      //   selectDOM.addEventListener("change", function () {
-      //     // console.log(this.options[this.selectedIndex].value);
-      //     // 변경으로 선택된 값
-      //     let val = this.options[this.selectedIndex].value;
-      //     console.log(this.selectedIndex);
-      //     // 생성할 태그 앨리먼트
-      //     let innerElem = document.createElement("span");
-      //     innerElem.innerHTML = `
-      //             <span class="el_tag"
-      //             ><span>${val}</span
-      //             ><img src="./img/close_white_24dp.svg" alt=""
-      //           /></span>
-      //           `;
-      //     // tags에 생성한 태그 앨리먼트 추가
-      //     tagsDOM.appendChild(innerElem);
-      //     // console.log(innerElem.childNodes[1].childNodes[1]);
-      //     // 변경된 값에 대해 기능 필요
-      //     getSlides();
-      //     innerElem.childNodes[1].childNodes[1].addEventListener(
-      //       "click",
-      //       () => {
-      //         innerElem.remove();
-      //         // 변경된 값에 대해 기능 필요
-      //         getSlides();
-      //       }
-      //     );
-      //   });
-      //   elem3.forEach((item) => {
-      //     item.addEventListener("click", () => {
-      //       item.parentElement.remove();
-      //     });
-      //   });
-
-      //   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-      //   function getFilters() {
-      //     const filtering = document.querySelectorAll(".el_tag > span");
-      //     let arr = [];
-      //     filtering.forEach((item) => {
-      //       // console.log(a);
-      //       // console.log(item.innerHTML);
-      //       arr.push(item.innerHTML);
-      //     });
-      //     return arr;
-      //   }
-      //   // let b = getFilters();
-      //   // console.log(b);
-      //   function getSlides() {
-      //     const slideItem = document.querySelectorAll(
-      //       ".bl_projects_slide_item"
-      //     );
-      //     slideItem.forEach((item) => {
-      //       let slideTags = String(item.dataset["tag"])
-      //         .split(",")
-      //         .map((i) => i.trim());
-      //       console.log(
-      //         slideTags.filter((i) => getFilters().includes(i)).length ===
-      //           getFilters().length
-      //       );
-      //       // console.log(getFilters());
-      //       if (
-      //         slideTags.filter((i) => getFilters().includes(i)).length ===
-      //         getFilters().length
-      //       ) {
-      //         item.classList.add("show");
-      //       } else {
-      //         item.classList.remove("show");
-      //       }
-      //     });
-      //   }
-      //   getSlides();
-      // }
-    </script>
   </body>
 </html>
