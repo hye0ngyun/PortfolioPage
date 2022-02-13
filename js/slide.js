@@ -7,18 +7,65 @@
       this.setting = setting;
       // DOM init
       this.slideContainer = document.querySelector(
-        `${slideSelector}_slide_items`,
+        `${this.slideSelector}_slide_items`,
       );
       this.slideItems = document.querySelectorAll(
-        `${slideSelector}_slide_item.show`,
+        `${this.slideSelector}_slide_item.show`,
       );
-      this.leftArrow = document.querySelector(`${slideSelector} .el_leftArrow`);
+      this.leftArrow = document.querySelector(
+        `${this.slideSelector} .el_leftArrow`,
+      );
       this.rightArrow = document.querySelector(
-        `${slideSelector} .el_rightArrow`,
+        `${this.slideSelector} .el_rightArrow`,
       );
       this.slideProgess = document.querySelector(
-        `${slideSelector} .el_slideBar_progress`,
+        `${this.slideSelector} .el_slideBar_progress`,
       );
+      this.filter = document.querySelectorAll(
+        `${this.slideSelector} .el_select .el_select_options`,
+      );
+      this.filter.forEach(i => {
+        // console.log([...i.children]);
+        [...i.children].forEach(i2 => {
+          i2.addEventListener('click', () => {
+            // console.log(i2);
+            i2.classList.toggle('js_check');
+            const innerElem = document.createElement('span');
+            innerElem.innerHTML = `
+              <span>${i2.innerHTML}</span>
+              <img
+                src="./img/close_white_24dp.svg"
+                alt="close button"
+                class="js_close"
+              />
+              `;
+            innerElem.classList.add('el_tag');
+            // console.log(innerElem.childNodes[3]);
+            innerElem.childNodes[3].addEventListener('click', () => {
+              innerElem.remove();
+              i2.classList.toggle('js_check');
+              this.getSlides();
+            });
+            if (i2.classList.contains('js_check')) {
+              // 추가
+              document
+                .querySelector('.bl_projects_filters_tags')
+                .append(innerElem);
+              this.getSlides();
+            } else {
+              // 삭제
+              document
+                .querySelectorAll('.bl_projects_filters_tags > .el_tag > span')
+                .forEach(i3 => {
+                  if (i3.innerHTML.trim() === i2.innerHTML.trim()) {
+                    i3.parentElement.remove();
+                    this.getSlides();
+                  }
+                });
+            }
+          });
+        });
+      });
       // variable init
       this.leftOffset = 0;
       this.maxSlide = 3;
@@ -52,7 +99,6 @@
       });
       this.slideContainer.addEventListener('mousedown', e => {
         this.start = e.pageX;
-        console.log(this.start);
       });
       this.slideContainer.addEventListener('mouseup', e => {
         this.end = e.pageX;
@@ -104,14 +150,36 @@
         this.maxSlide = 1;
       }
 
+      this.slideItems = document.querySelectorAll(
+        `${this.slideSelector}_slide_item.show`,
+      );
       this.leftOffset = 0;
+      this.currShow = 0;
       this.slideContainerWidth = this.slideContainer.clientWidth;
       this.slideItemWidth = this.slideContainerWidth / this.maxSlide;
-      this.currShow = 0;
       this.slideTotalCount = this.slideItems.length;
       this.maxOffset =
         (this.slideTotalCount - this.maxSlide) * this.slideItemWidth;
       this.progress();
+      console.log(this.slideTotalCount);
+      const elem = document.createElement('div');
+      elem.innerHTML = `
+          <div>조건에 해당하는 결과가 존재하지 않습니다.</div>
+        `;
+      if (this.slideTotalCount === 0) {
+        elem.classList.add('bl_projects_slide_item');
+        elem.classList.add('show');
+        elem.classList.add('noresult');
+        this.slideContainer.append(elem);
+      } else {
+        this.slideItems.forEach(i => {
+          console.log(i.classList.contains('noresult'));
+          if (i.classList.contains('noresult')) {
+            i.remove();
+            this.resize();
+          }
+        });
+      }
 
       this.slideItems.forEach(i => {
         i.style.left = `${this.leftOffset}px`;
@@ -134,88 +202,46 @@
         this.currShow * (100 / this.slideTotalCount)
       }%`;
     }
+
+    getSlides() {
+      const slideItem = document.querySelectorAll(
+        `${this.slideSelector}_slide_item`,
+      );
+      slideItem.forEach(item => {
+        const slideTags = String(item.dataset.tag)
+          .split(',')
+          .map(i => i.trim());
+        if (
+          slideTags.filter(i => this.getFilters().includes(i)).length ===
+          this.getFilters().length
+        ) {
+          item.classList.add('show');
+        } else {
+          item.classList.remove('show');
+        }
+      });
+      this.resize();
+    }
+
+    getFilters() {
+      const tags = document.querySelectorAll(
+        `${this.slideSelector} .el_tag > span`,
+      );
+      const arr = [];
+      tags.forEach(item => {
+        arr.push(item.innerHTML.trim());
+      });
+      return arr;
+    }
   }
 
   // 인스턴스 생성 - 슬라이드 기능 구현
   const blStacksSlide = new BlSlide('.bl_stacks');
   const blProjectsSlide = new BlSlide('.bl_projects');
-}
 
-{
-  // 필터 기능
-  const selectDOM = document.querySelector('.bl_projects_filters > select');
-  const tagsDOM = document.querySelector('.bl_projects_filters_tags');
-  const elem3 = document.querySelectorAll('.el_tag > .js_close');
-  // console.log(elem.selected);
-  selectDOM.addEventListener('change', function () {
-    // console.log(this.options[this.selectedIndex].value);
-    // 변경으로 선택된 값
-    const val = this.options[this.selectedIndex].value;
-    console.log(this.selectedIndex);
-    // 생성할 태그 앨리먼트
-    const innerElem = document.createElement('span');
-    innerElem.innerHTML = `
-            <span class="el_tag"
-            ><span>${val}</span
-            ><img src="./img/close_white_24dp.svg" alt=""
-          /></span>
-          `;
-    // tags에 생성한 태그 앨리먼트 추가
-    if (!getFilters().includes(val)) {
-      tagsDOM.appendChild(innerElem);
-    }
-
-    // console.log(innerElem.childNodes[1].childNodes[1]);
-    // 변경된 값에 대해 기능 필요
-    getSlides();
-    innerElem.childNodes[1].childNodes[1].addEventListener('click', () => {
-      innerElem.remove();
-      // 변경된 값에 대해 기능 필요
-      getSlides();
+  document
+    .querySelector('.el_projects_toggle')
+    .addEventListener('click', () => {
+      document.querySelector('.bl_projects').classList.toggle('grid');
     });
-    // 필터 선택으로 변경
-    this.selectedIndex = 0;
-  });
-  elem3.forEach(item => {
-    item.addEventListener('click', () => {
-      item.parentElement.remove();
-    });
-  });
-
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  function getFilters() {
-    const filtering = document.querySelectorAll('.el_tag > span');
-    const arr = [];
-    filtering.forEach(item => {
-      // console.log(a);
-      // console.log(item.innerHTML);
-      arr.push(item.innerHTML);
-    });
-    return arr;
-  }
-  // let b = getFilters();
-  // console.log(b);
-  function getSlides() {
-    const slideItem = document.querySelectorAll('.bl_projects_slide_item');
-    slideItem.forEach(item => {
-      const slideTags = String(item.dataset.tag)
-        .split(',')
-        .map(i => i.trim());
-      // console.log(
-      //   slideTags.filter((i) => getFilters().includes(i)).length ===
-      //   getFilters().length;
-      // );
-      // console.log(getFilters());
-      if (
-        slideTags.filter(i => getFilters().includes(i)).length ===
-        getFilters().length
-      ) {
-        item.classList.add('show');
-      } else {
-        item.classList.remove('show');
-      }
-    });
-
-    setSlideSize(true);
-  }
 }

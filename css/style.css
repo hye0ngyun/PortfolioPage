@@ -3,32 +3,32 @@
 }
 
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   src: url(../font/Noto_Sans_KR/NotoSansKR-Thin.otf);
   font-weight: 100;
 }
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   src: url(../font/Noto_Sans_KR/NotoSansKR-Light.otf);
   font-weight: 300;
 }
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   src: url(../font/Noto_Sans_KR/NotoSansKR-Regular.otf);
   font-weight: 400;
 }
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   src: url(../font/Noto_Sans_KR/NotoSansKR-Medium.otf);
   font-weight: 500;
 }
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   src: url(../font/Noto_Sans_KR/NotoSansKR-Bold.otf);
   font-weight: 700;
 }
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   src: url(../font/Noto_Sans_KR/NotoSansKR-Black.otf);
   font-weight: 900;
 }
@@ -36,8 +36,8 @@
 /* common group */
 html {
   font-size: 62.5%;
-  font-family: "Noto Sans KR", "Gill Sans", "Gill Sans MT", Calibri,
-    "Trebuchet MS", sans-serif;
+  font-family: 'Noto Sans KR', 'Gill Sans', 'Gill Sans MT', Calibri,
+    'Trebuchet MS', sans-serif;
   background-color: #fafafa;
 }
 * {
@@ -160,6 +160,69 @@ a {
   cursor: pointer;
 }
 .el_select {
+  position: relative;
+  cursor: pointer;
+}
+.el_select_ttl {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  padding: 5px 10px;
+  min-width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.el_select:hover .el_select_options {
+  /* display: block; */
+  border: 1px solid #ccc;
+
+  visibility: visible;
+  height: fit-content;
+}
+.el_select:hover .el_select_options_item {
+  visibility: visible;
+  height: 30px;
+  color: #333;
+}
+.el_select_options {
+  position: absolute;
+  /* display: none; */
+  /* visibility: hidden; */
+  /* top: 2.4rem; */
+  height: 0;
+  z-index: 2;
+  width: 100%;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  background-color: #fafafa;
+  /* padding: 5px 0; */
+  transition: 1s;
+}
+.el_select_options.show {
+  display: block;
+}
+.el_select_options_item {
+  display: flex;
+  align-items: center;
+  height: 0;
+  visibility: hidden;
+  padding: 0 20px;
+  /* padding-bottom: 5px; */
+  transition: height 0.5s, color 0.5s, visibility 0.5s;
+  color: #fafafa;
+}
+.el_select_options_item.js_check {
+  background-image: url(../img/done_black_24dp.svg);
+  background-repeat: no-repeat;
+  background-size: 1.6rem;
+  background-position: center left 3px;
+}
+.el_select_options_item:hover {
+  background-color: #ccc;
+}
+/* .el_select {
   border: none;
   background: none;
   border: 2px solid var(--primary-color);
@@ -174,7 +237,7 @@ a {
 }
 .el_select > option:hover {
   background-color: #3a3377;
-}
+} */
 
 /* @@@ block group @@@ */
 /* bl_header */
@@ -208,7 +271,7 @@ a {
 
 /* bl_banner */
 .bl_banner::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -240,13 +303,21 @@ a {
 }
 
 /* bl_projects */
-.bl_proejects {
+.bl_projects {
+}
+.bl_projects.grid .bl_projects_slide {
+  display: none;
 }
 .bl_projects_filters {
   display: flex;
   gap: 10px;
   font-size: 16px;
   align-items: center;
+}
+.bl_projects_filters_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 .bl_projects_slide {
   position: relative;
@@ -483,7 +554,7 @@ a {
 }
 .un_projects_toggle + label::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 12px;
   width: 12px;
   transform: translate(2.5px, 2.5px);
@@ -565,5 +636,11 @@ a {
   .hp_mtb_82 {
     margin-top: 40px;
     margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .ly_main {
+    padding: 0 20px;
   }
 }

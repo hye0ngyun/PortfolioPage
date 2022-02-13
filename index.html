@@ -41,14 +41,43 @@
           <h2 class="el_ttl" id="projects">Projects</h2>
           <div class="ly_jusitfyBetween hp_mb_30">
             <div class="bl_projects_filters">
-              <span>filters</span>
-              <select name="" id="" class="el_select">
+              <span
+                ><img src="./img/filter_alt_black_24dp.svg" alt="filter"
+              /></span>
+              <div class="el_select">
+                <label for="" class="el_select_ttl"
+                  ><span>언어</span
+                  ><img src="./img/arrow_drop_down_black_24dp.svg" alt=""
+                /></label>
+                <ul class="el_select_options">
+                  <li value="HTML" class="el_select_options_item">HTML</li>
+                  <li value="CSS" class="el_select_options_item">CSS</li>
+                  <li value="JS" class="el_select_options_item">JS</li>
+                  <li value="Python" class="el_select_options_item">Python</li>
+                </ul>
+              </div>
+              <div class="el_select">
+                <label for="" class="el_select_ttl"
+                  ><span>분야</span
+                  ><img src="./img/arrow_drop_down_black_24dp.svg" alt=""
+                /></label>
+                <ul class="el_select_options">
+                  <li value="Frontend" class="el_select_options_item">
+                    Frontend
+                  </li>
+                  <li value="Backend" class="el_select_options_item">
+                    Backend
+                  </li>
+                </ul>
+              </div>
+
+              <!-- <select name="" id="" class="el_select">
                 <option value="none" selected disabled>필터 선택</option>
                 <option value="HTML">HTML</option>
                 <option value="CSS">CSS</option>
                 <option value="JS">JS</option>
                 <option value="Python">Python</option>
-              </select>
+              </select> -->
               <div class="bl_projects_filters_tags">
                 <!-- <span class="el_tag"
                   ><span>somethin</span
@@ -67,7 +96,7 @@
                 id="projects_toggle"
                 class="un_projects_toggle"
               />
-              <label for="projects_toggle" class=""> </label>
+              <label for="projects_toggle" class="el_projects_toggle"> </label>
               <span>grid</span>
             </div>
           </div>
