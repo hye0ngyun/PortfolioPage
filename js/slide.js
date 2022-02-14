@@ -143,7 +143,7 @@
           this.currShow === this.slideTotalCount - 2
         )
           this.currShow -= 1;
-      } else if (this.slideTotalCount > 1 && window.innerWidth >= 768) {
+      } else if (window.innerWidth >= 768) {
         this.maxSlide = 2;
         if (this.currShow === this.slideTotalCount - 1) this.currShow -= 1;
       } else {
@@ -161,7 +161,6 @@
       this.maxOffset =
         (this.slideTotalCount - this.maxSlide) * this.slideItemWidth;
       this.progress();
-      console.log(this.slideTotalCount);
       const elem = document.createElement('div');
       elem.innerHTML = `
           <div>조건에 해당하는 결과가 존재하지 않습니다.</div>
@@ -173,10 +172,11 @@
         this.slideContainer.append(elem);
       } else {
         this.slideItems.forEach(i => {
-          console.log(i.classList.contains('noresult'));
           if (i.classList.contains('noresult')) {
             i.remove();
-            this.resize();
+            // this.currShow = 0;
+            // this.resize();
+            console.log(this.maxSlide);
           }
         });
       }
@@ -199,7 +199,9 @@
           ? `${this.maxSlide * (100 / this.slideTotalCount)}%`
           : `${100}%`;
       this.slideProgess.style.left = `${
-        this.currShow * (100 / this.slideTotalCount)
+        this.slideTotalCount !== 0
+          ? this.currShow * (100 / this.slideTotalCount)
+          : 0
       }%`;
     }
 
