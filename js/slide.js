@@ -176,7 +176,7 @@
             i.remove();
             // this.currShow = 0;
             // this.resize();
-            console.log(this.maxSlide);
+            // console.log(this.maxSlide);
           }
         });
       }

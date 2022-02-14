@@ -354,14 +354,18 @@ a {
   left: 0;
   transition: width 0.5s, left 0.5s;
   flex-direction: column;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  overflow-y: hidden;
   /* transition: 0.5s; */
 
   /* border-right: 1px solid #ccc; */
 }
-.bl_projects_slide_item:hover .bl_projects_slide_item_img {
-  position: absolute;
+.bl_projects_slide_item:hover .bl_projects_slide_item_imgWrap {
+  height: 0;
+  /* position: absolute;
   z-index: -1;
-  top: 0;
+  top: 0; */
 }
 .bl_projects_slide_item:hover .bl_projects_slide_item_desc {
   background-color: #eeec;
@@ -370,8 +374,13 @@ a {
 }
 .bl_projects_slide_item:hover .bl_projects_slide_item_desc_link {
   visibility: visible;
-  height: fit-content;
+  height: 35px;
   opacity: 1;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+}
+.bl_projects_slide_item:hover .bl_projects_slide_item_desc_p {
+  -webkit-line-clamp: unset;
 }
 .bl_projects_slide_item.show {
   display: flex;
@@ -380,7 +389,8 @@ a {
 .bl_projects_slide_item_img {
   /* max-width: 360px; */
   width: 100%;
-  height: 50%;
+  /* height: 50%; */
+  z-index: -1;
   object-fit: contain;
   user-drag: none;
   -webkit-user-drag: none;
@@ -388,13 +398,13 @@ a {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  position: absolute;
   box-shadow: inset 0px 0px 20px 0px #333;
-  position: relative;
-  transition: 0.5s;
 }
 .bl_projects_slide_item_imgWrap {
   width: 100%;
-  height: 100%;
+  height: 50%;
+  transition: 0.5s;
 }
 .bl_projects_slide_item_desc {
   width: 100%;
@@ -402,11 +412,8 @@ a {
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 15px;
   background-color: #eee;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-
   transition: 0.5s;
 }
 .bl_projects_slide_item_desc_ttl {
@@ -421,17 +428,30 @@ a {
 }
 .bl_projects_slide_item_desc_p {
   margin-bottom: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-height: 2rem;
 }
 .bl_projects_slide_item_desc_link {
   visibility: hidden;
-
+  background-color: #7b70e6;
+  width: fit-content;
+  align-self: center;
+  height: 0px;
+  border-radius: 100px;
+  color: #fff;
   transition: 0.5s;
-  margin-bottom: 20px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
+}
+.bl_projects_slide_item_desc_link:hover {
+  box-shadow: 0 0 10px #7b70e6;
 }
 .bl_projects_slide_item_desc_tags {
   line-height: 2rem;
