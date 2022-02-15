@@ -308,6 +308,7 @@ a {
 
 /* bl_projects */
 .bl_projects {
+  font-size: 1.6rem ;
 }
 .bl_projects.grid .bl_projects_slide,
 .bl_projects.grid .el_slideBar {

@@ -77,6 +77,12 @@
         (this.slideTotalCount - this.maxSlide) * this.slideItemWidth;
       this.start = 0;
       this.end = 0;
+      this.leftArrow.style.top = `${
+        this.slideContainer.clientHeight / 2 - this.leftArrow.clientHeight / 2
+      }px`;
+      this.rightArrow.style.top = `${
+        this.slideContainer.clientHeight / 2 - this.rightArrow.clientHeight / 2
+      }px`;
       this.resize();
 
       // binding event handler
@@ -155,42 +161,18 @@
       );
       this.leftOffset = 0;
       this.currShow = 0;
-      this.slideContainerWidth = this.slideContainer.clientWidth;
+      this.slideContainerWidth =
+        document.querySelector('.bl_projects').clientWidth;
       this.slideItemWidth = this.slideContainerWidth / this.maxSlide;
       this.slideTotalCount = this.slideItems.length;
       this.maxOffset =
         (this.slideTotalCount - this.maxSlide) * this.slideItemWidth;
       this.progress();
-      const elem = document.createElement('div');
-      elem.innerHTML = `
-          <div>조건에 해당하는 결과가 존재하지 않습니다.</div>
-        `;
-      if (this.slideTotalCount === 0) {
-        elem.classList.add('bl_projects_slide_item');
-        elem.classList.add('show');
-        elem.classList.add('noresult');
-        this.slideContainer.append(elem);
-      } else {
-        this.slideItems.forEach(i => {
-          if (i.classList.contains('noresult')) {
-            i.remove();
-            // this.currShow = 0;
-            // this.resize();
-            // console.log(this.maxSlide);
-          }
-        });
-      }
 
       this.slideItems.forEach(i => {
         i.style.left = `${this.leftOffset}px`;
         i.style.width = `${this.slideItemWidth}px`;
       });
-      this.leftArrow.style.top = `${
-        this.slideContainer.clientHeight / 2 - this.leftArrow.clientHeight / 2
-      }px`;
-      this.rightArrow.style.top = `${
-        this.slideContainer.clientHeight / 2 - this.rightArrow.clientHeight / 2
-      }px`;
     }
 
     progress() {
@@ -222,6 +204,29 @@
           item.classList.remove('show');
         }
       });
+      this.slideItems = document.querySelectorAll(
+        `${this.slideSelector}_slide_item.show`,
+      );
+      this.slideTotalCount = this.slideItems.length;
+      const elem = document.createElement('div');
+      elem.innerHTML = `
+          <div>조건에 해당하는 결과가 존재하지 않습니다.</div>
+        `;
+      if (this.slideTotalCount === 0) {
+        elem.classList.add('bl_projects_slide_item');
+        elem.classList.add('show');
+        elem.classList.add('noresult');
+        this.slideContainer.append(elem);
+      } else {
+        this.slideItems.forEach(i => {
+          if (i.classList.contains('noresult')) {
+            i.remove();
+            // this.currShow = 0;
+            // this.resize();
+            // console.log(this.maxSlide);
+          }
+        });
+      }
       this.resize();
     }
 
