@@ -80,35 +80,58 @@
                   <li value="Svelte" class="el_select_options_item">Svelte</li>
                 </ul>
               </div>
-
-              <!-- <select name="" id="" class="el_select">
-                <option value="none" selected disabled>필터 선택</option>
-                <option value="HTML">HTML</option>
-                <option value="CSS">CSS</option>
-                <option value="JS">JS</option>
-                <option value="Python">Python</option>
-              </select> -->
-              <div class="bl_projects_filters_tags">
-                <!-- <span class="el_tag"
-                  ><span>somethin</span
-                  ><img
-                    src="./img/close_white_24dp.svg"
-                    alt=""
-                    class="js_close"
-                /></span>
-                -->
+              <div class="el_select">
+                <label for="" class="el_select_ttl"
+                  ><span>분야</span
+                  ><img src="./img/arrow_drop_down_black_24dp.svg" alt=""
+                /></label>
+                <ul class="el_select_options">
+                  <li value="Frontend" class="el_select_options_item">
+                    Frontend
+                  </li>
+                  <li value="Backend" class="el_select_options_item">
+                    Backend
+                  </li>
+                  <li value="Publishing" class="el_select_options_item">
+                    Publishing
+                  </li>
+                </ul>
               </div>
             </div>
             <div class="el_toggle">
-              <img src="./img/view_array_black_24dp.svg" alt="" />
+              <img
+                src="./img/view_array_black_24dp.svg"
+                alt="slide_ico"
+                title="슬라이드 뷰(slide view)"
+              />
               <input
                 type="checkbox"
                 id="projects_toggle"
                 class="un_projects_toggle"
               />
               <label for="projects_toggle" class="el_projects_toggle"> </label>
-              <img src="./img/grid_view_black_24dp.svg" alt="" />
+              <img
+                src="./img/grid_view_black_24dp.svg"
+                alt="grid_ico"
+                title="그리드 뷰(grid view)"
+              />
             </div>
+          </div>
+          <div class="bl_projects_tags">
+            <img
+              src="./img/delete_sweep_black_24dp.svg"
+              alt="delete_all"
+              title="모두 삭제(delete all)"
+              class="un_deleteAll"
+            />
+            <!-- <span class="el_tag"
+              ><span>somethin</span
+              ><img
+                src="./img/close_white_24dp.svg"
+                alt=""
+                class="js_close"
+            /></span>
+            -->
           </div>
           <div class="bl_projects_slide">
             <div class="el_leftArrow">
@@ -146,12 +169,18 @@
                   </div>
                   <div class="bl_projects_slide_item_desc_tags">
                     <div>
-                      <span class="hp_txt_bold">언어</span>: HTML/CSS,
-                      JavaScript
+                      <span class="hp_txt_bold">언어: </span>
+                      <span class="el_tag">HTML/CSS</span>
+                      <span class="el_tag">JavaScript</span>
                     </div>
                     <div>
-                      <span class="hp_txt_bold">분야</span>: Publishing,
-                      Frontend
+                      <span class="hp_txt_bold">프레임워크: </span>
+                      <!-- <span class="el_tag">Frontend</span> -->
+                    </div>
+                    <div>
+                      <span class="hp_txt_bold">분야: </span>
+                      <span class="el_tag">Publishing</span>
+                      <span class="el_tag">Frontend</span>
                     </div>
                   </div>
                 </div>
