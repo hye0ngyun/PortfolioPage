@@ -127,7 +127,7 @@
         this.end = e.changedTouches[0].clientX;
         if (this.end - this.start < 0) {
           this.rightMove();
-        } else {
+        } else if (this.end - this.start > 0) {
           this.leftMove();
         }
       });
@@ -138,7 +138,7 @@
         this.end = e.pageX;
         if (this.end - this.start < 0) {
           this.rightMove();
-        } else {
+        } else if (this.end - this.start > 0) {
           this.leftMove();
         }
       });
@@ -273,10 +273,4 @@
   // 인스턴스 생성 - 슬라이드 기능 구현
   const blProjectsSlide = new BlSlide('.bl_projects');
   const blStacksSlide = new BlSlide('.bl_stacks');
-
-  document
-    .querySelector('.el_projects_toggle')
-    .addEventListener('click', () => {
-      document.querySelector('.bl_projects').classList.toggle('grid');
-    });
 }

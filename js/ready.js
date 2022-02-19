@@ -8,4 +8,10 @@
       document.querySelector('.bl_header').classList.remove('js_active');
     }
   });
+
+  document
+    .querySelector('.el_projects_toggle')
+    .addEventListener('click', () => {
+      document.querySelector('.bl_projects').classList.toggle('grid');
+    });
 }
