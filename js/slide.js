@@ -34,7 +34,7 @@
               <img
                 src="./img/close_black_24dp.svg"
                 alt="close button"
-                class="js_close"
+                class="js_close el_ico"
               />
               `;
             innerElem.classList.add('el_tag');
