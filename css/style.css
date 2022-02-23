@@ -738,6 +738,7 @@ a {
 .un_deleteAll {
   cursor: pointer;
   margin: 0 2.5px;
+  height: 30px;
 }
 
 @media (max-width: 768px) {
@@ -839,6 +840,11 @@ a {
     margin-top: 40px;
     margin-bottom: 40px;
   }
+
+  /* unique */
+  .un_deleteAll {
+    height: 26px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -847,7 +853,7 @@ a {
   }
   .el_select_ttl {
     min-width: 80px;
-    padding: 5px 8px;
+    padding: 5px 7px;
   }
   .el_select_ttl,
   .el_select_options_item,
@@ -899,5 +905,10 @@ a {
   }
   .bl_projects_filtersWrap > .el_toggle {
     /* margin: 0 auto; */
+  }
+
+  /* unique */
+  .un_deleteAll {
+    height: 22px;
   }
 }
