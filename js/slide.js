@@ -16,16 +16,18 @@
       this.slideProgess = document.querySelector(
         `${this.selector} .el_slideBar_progress`,
       );
+      // 필터 DOM
+      this.filter = document.querySelectorAll(
+        `${this.selector} .el_select .el_select_options`,
+      );
 
+      // 그리드 순서
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
       let seq = 0;
       this.items.forEach(i => {
         seq += 1;
         i.setAttribute('data-seq', seq);
       });
-      this.filter = document.querySelectorAll(
-        `${this.selector} .el_select .el_select_options`,
-      );
 
       /* toggle start */
       // 토글 이벤트
@@ -258,6 +260,18 @@
       //   `${this.selector}_cont_item.js_gridShow`,
       // );
       // this.maxRow = 2;
+      this.items = document.querySelectorAll(`${this.selector}_cont_item`);
+      this.items.forEach(i => {
+        i.setAttribute('data-seq', -1);
+      });
+      // 그리드 순서
+      this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
+      let seq = 0;
+      this.items.forEach(i => {
+        seq += 1;
+        i.setAttribute('data-seq', seq);
+      });
+      console.log(this.items);
       // this.maxCol = 4;
       this.maxItems = this.maxRow * this.maxCol;
       this.gridGap = 30;
@@ -268,9 +282,6 @@
       this.containerHeight = document.querySelector(
         `${this.selector}_cont`,
       ).clientHeight;
-      console.log(`this.containerWidth: ${this.containerWidth}`);
-      console.log(`this.containerHeight: ${this.containerHeight}`);
-
       this.gridItemWidth =
         this.containerWidth / this.maxCol -
         (this.gridGap * (this.maxCol - 1)) / this.maxCol;
@@ -283,7 +294,7 @@
         i.style.height = `${this.gridItemWidth}px`;
         console.log(Number(i.getAttribute('data-seq')));
         if (
-          // 고쳐야할 부분
+          // 현재 페이지에서 보여야 하는 경우 js_gridShow로 보여주기
           (this.gridCurrPage - 1) * this.maxItems <
             Number(i.getAttribute('data-seq')) &&
           Number(i.getAttribute('data-seq')) <=
@@ -295,32 +306,31 @@
         }
       });
       this.slideContainer.style.gap = `${this.gridGap}px`;
+
       this.gridPagenation = document.querySelector('.el_pagenation');
-      this.items = document.querySelectorAll(
-        `${this.selector}_cont_item.js_gridShow`,
-      );
+      this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
       console.log(this.items.length);
-      this.a = ``;
-      for (
-        let i = 1;
-        i <=
-        (this.items.length / this.maxItems < 0
-          ? 0
-          : Number(this.items.length / this.maxItems) + 1);
-        i += 1
-      ) {
-        this.a += `
-        <li>${i}</li>
-        `;
+      // 페이지네이션 동적 생성
+      const maxGridPagination =
+        this.items.length / this.maxItems > 1
+          ? parseInt(this.items.length / this.maxItems, 10) + 1
+          : 0;
+      this.gridPaginationElem = `
+                                <li>${1}</li>
+                                `;
+      for (let i = 2; i <= maxGridPagination; i += 1) {
+        this.gridPaginationElem += `
+                                  <li>${i}</li>
+                                  `;
       }
       console.log(this.a);
-      this.gridPagenation.innerHTML = this.a;
+      this.gridPagenation.innerHTML = this.gridPaginationElem;
       // this.gridPagenation.innerHTML = `
       // <li>${1}</li>
       // <li>${2}</li>
       // `;
 
-      console.log();
+      console.log([...this.gridPagenation.children]);
       [...this.gridPagenation.children].forEach(item => {
         item.addEventListener('click', e => {
           console.log(e.target.innerText);
@@ -329,7 +339,7 @@
             `this.gridCurrPage: ${this.gridCurrPage}, this.maxItems: ${this.maxItems}`,
           );
           this.items = document.querySelectorAll(
-            `${this.selector}_cont_item.js_gridShow`,
+            `${this.selector}_cont_item.show`,
           );
           this.items.forEach(i => {
             if (
@@ -378,7 +388,6 @@
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
       if (!this.blCont.classList.contains('js_grid')) {
         // slide
-
         this.slideTotalCount = this.items.length;
 
         if (this.slideTotalCount === 0) {

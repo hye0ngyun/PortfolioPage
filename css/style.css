@@ -424,7 +424,7 @@ a {
   border-left: unset;
   border-right: unset;
   overflow-y: hidden;
-  /* transition: 0.5s; */
+  transition: 0s;
 
   /* border-right: 1px solid #ccc; */
 }
@@ -432,7 +432,7 @@ a {
   display: flex;
 } */
 
-.bl_projects.js_grid .bl_projects_cont_item.js_gridShow {
+.bl_projects.js_grid .bl_projects_cont_item.show.js_gridShow {
   display: flex;
   flex: 0 0 auto;
 }
