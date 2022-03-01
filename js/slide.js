@@ -280,7 +280,7 @@
         `${this.selector}_cont`,
       ).clientWidth;
       this.containerHeight = document.querySelector(
-        `${this.selector}_cont`,
+        `${this.selector}_cont_items`,
       ).clientHeight;
       this.gridItemWidth =
         this.containerWidth / this.maxCol -
@@ -288,6 +288,12 @@
       this.gridItemHeight =
         this.containerHeight / this.maxRow -
         (this.gridGap * (this.maxRow - 1)) / this.maxRow;
+      // 그리드 컨테이너 높이
+      document.querySelector(
+        `${this.selector}_cont_items`,
+      ).style.minHeight = `${
+        this.gridItemWidth * this.maxRow + this.gridGap
+      }px`;
 
       this.items.forEach(i => {
         i.style.width = `${this.gridItemWidth}px`;
@@ -307,7 +313,7 @@
       });
       this.slideContainer.style.gap = `${this.gridGap}px`;
 
-      this.gridPagenation = document.querySelector('.el_pagenation');
+      this.gridPagination = document.querySelector('.el_pagination');
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
       console.log(this.items.length);
       // 페이지네이션 동적 생성
@@ -316,7 +322,7 @@
           ? parseInt(this.items.length / this.maxItems, 10) + 1
           : 0;
       this.gridPaginationElem = `
-                                <li>${1}</li>
+                                <li class="js_page">${1}</li>
                                 `;
       for (let i = 2; i <= maxGridPagination; i += 1) {
         this.gridPaginationElem += `
@@ -324,17 +330,21 @@
                                   `;
       }
       console.log(this.a);
-      this.gridPagenation.innerHTML = this.gridPaginationElem;
-      // this.gridPagenation.innerHTML = `
+      this.gridPagination.innerHTML = this.gridPaginationElem;
+      // this.gridPagination.innerHTML = `
       // <li>${1}</li>
       // <li>${2}</li>
       // `;
 
-      console.log([...this.gridPagenation.children]);
-      [...this.gridPagenation.children].forEach(item => {
+      console.log([...this.gridPagination.children]);
+      [...this.gridPagination.children].forEach(item => {
         item.addEventListener('click', e => {
+          [...this.gridPagination.children].forEach(i =>
+            i.classList.remove('js_page'),
+          );
           console.log(e.target.innerText);
           this.gridCurrPage = Number(e.target.innerText);
+          e.target.classList.add('js_page');
           console.log(
             `this.gridCurrPage: ${this.gridCurrPage}, this.maxItems: ${this.maxItems}`,
           );

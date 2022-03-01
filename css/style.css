@@ -255,6 +255,31 @@ a {
   max-width: 250px;
   height: 55px;
 }
+.el_pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 5px;
+}
+.el_pagination > li {
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7b70e655;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+.el_pagination > li:hover {
+  box-shadow: 0 0 5px var(--btn-color);
+}
+.el_pagination > li.js_page {
+  color: #fff;
+  background-color: #7b70e6cc;
+}
 
 /* @@@ block group @@@ */
 /* bl_header */
