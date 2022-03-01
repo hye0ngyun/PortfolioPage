@@ -224,14 +224,15 @@
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
       this.leftOffset = 0;
       this.slideCurrShow = 0;
+      document.querySelector(
+        `${this.selector}_cont_items`,
+      ).style.minHeight = `400px`;
       this.containerWidth = document.querySelector(
         `${this.selector}_cont`,
       ).clientWidth;
       this.containerHeight = document.querySelector(
         `${this.selector}_cont`,
       ).clientHeight;
-      console.log(this.containerWidth);
-      console.log(this.containerHeight);
 
       this.slideItemWidth = this.containerWidth / this.maxSlide;
       this.slideTotalCount = this.items.length;
@@ -271,7 +272,6 @@
         seq += 1;
         i.setAttribute('data-seq', seq);
       });
-      console.log(this.items);
       // this.maxCol = 4;
       this.maxItems = this.maxRow * this.maxCol;
       this.gridGap = 30;
@@ -298,7 +298,6 @@
       this.items.forEach(i => {
         i.style.width = `${this.gridItemWidth}px`;
         i.style.height = `${this.gridItemWidth}px`;
-        console.log(Number(i.getAttribute('data-seq')));
         if (
           // 현재 페이지에서 보여야 하는 경우 js_gridShow로 보여주기
           (this.gridCurrPage - 1) * this.maxItems <
@@ -315,7 +314,6 @@
 
       this.gridPagination = document.querySelector('.el_pagination');
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
-      console.log(this.items.length);
       // 페이지네이션 동적 생성
       const maxGridPagination =
         this.items.length / this.maxItems > 1
@@ -329,25 +327,20 @@
                                   <li>${i}</li>
                                   `;
       }
-      console.log(this.a);
       this.gridPagination.innerHTML = this.gridPaginationElem;
       // this.gridPagination.innerHTML = `
       // <li>${1}</li>
       // <li>${2}</li>
       // `;
 
-      console.log([...this.gridPagination.children]);
       [...this.gridPagination.children].forEach(item => {
         item.addEventListener('click', e => {
           [...this.gridPagination.children].forEach(i =>
             i.classList.remove('js_page'),
           );
-          console.log(e.target.innerText);
           this.gridCurrPage = Number(e.target.innerText);
           e.target.classList.add('js_page');
-          console.log(
-            `this.gridCurrPage: ${this.gridCurrPage}, this.maxItems: ${this.maxItems}`,
-          );
+
           this.items = document.querySelectorAll(
             `${this.selector}_cont_item.show`,
           );

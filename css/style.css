@@ -357,8 +357,12 @@ a {
 }
 .bl_projects.js_grid .el_slideBar,
 .bl_projects.js_grid .el_leftArrow,
-.bl_projects.js_grid .el_rightArrow {
+.bl_projects.js_grid .el_rightArrow,
+.bl_projects .el_pagination {
   display: none;
+}
+.bl_projects.js_grid .el_pagination {
+  display: flex;
 }
 .bl_projects_filters {
   display: flex;
