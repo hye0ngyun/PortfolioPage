@@ -257,10 +257,6 @@
         this.maxCol = 2;
       }
 
-      // this.items = document.querySelectorAll(
-      //   `${this.selector}_cont_item.js_gridShow`,
-      // );
-      // this.maxRow = 2;
       this.items = document.querySelectorAll(`${this.selector}_cont_item`);
       this.items.forEach(i => {
         i.setAttribute('data-seq', -1);
@@ -332,6 +328,40 @@
       // <li>${1}</li>
       // <li>${2}</li>
       // `;
+
+      // 그리드 팝업
+      document
+        .querySelectorAll('.bl_projects.js_grid .bl_projects_cont_item')
+        .forEach(ii => {
+          ii.addEventListener('click', e => {
+            // grid인 경우에만
+            if (
+              document
+                .querySelector(`${this.selector}`)
+                .classList.contains('js_grid')
+            ) {
+              // js_on 추가 - 팝업 열기
+              e.target.parentElement.children[1].classList.add('js_on');
+              document.querySelector('.el_popupBack').classList.add('js_on');
+              document
+                .querySelector('.el_popupBack')
+                .addEventListener('click', e2 => {
+                  // js_on 삭제 - 팝업 닫기
+                  e.target.parentElement.children[1].classList.remove('js_on');
+                  e2.target.classList.remove('js_on');
+                });
+            }
+          });
+        });
+      document.querySelectorAll('.un_gridClose').forEach(ii => {
+        ii.addEventListener('click', e => {
+          // 이벤트 버블링 방지
+          e.stopPropagation();
+          // js_on 삭제 - 팝업 닫기
+          e.target.parentElement.classList.remove('js_on');
+          document.querySelector('.el_popupBack').classList.remove('js_on');
+        });
+      });
 
       [...this.gridPagination.children].forEach(item => {
         item.addEventListener('click', e => {
