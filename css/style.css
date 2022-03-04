@@ -441,7 +441,7 @@ a {
   flex-direction: column;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
-  overflow-y: hidden;
+  overflow: hidden;
   /* transition: 0.5s; */
 
   /* border-right: 1px solid #ccc; */
@@ -516,7 +516,8 @@ a {
   position: absolute;
 }
 .bl_projects.js_grid .bl_projects_cont_item_img {
-  /* width: inherit; */
+  width: inherit;
+  position: unset;
 }
 
 .bl_projects_cont_item_imgWrap {
@@ -527,11 +528,13 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .bl_projects.js_grid .bl_projects_cont_item_imgWrap {
   transition: 0s;
   height: 100%;
-  border: 1px solid #333;
+  border: 0.5px solid #3333;
+  box-shadow: ;
   /* width: inherit; */
 }
 .bl_projects_cont_item_desc {
