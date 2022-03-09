@@ -115,6 +115,8 @@
         (this.slideTotalCount - this.maxSlide) * this.slideItemWidth;
       this.start = 0;
       this.end = 0;
+      this.tempLeftOffset = 0;
+      this.currX = 0;
       try {
         this.leftArrow.style.top = `${
           this.slideContainer.clientHeight / 2 - this.leftArrow.clientHeight / 2
@@ -151,24 +153,76 @@
       this.slideContainer.addEventListener('touchstart', e => {
         this.start = e.touches[0].pageX;
       });
+      this.slideContainer.addEventListener('touchmove', e => {
+        this.currX = e.touches[0].pageX;
+        if (this.start !== 0 && this.start < this.currX) {
+          // left
+          if (this.tempLeftOffset <= 100) {
+            this.tempLeftOffset += 10;
+          }
+          this.items.forEach(item => {
+            item.style.left = `${this.leftOffset + this.tempLeftOffset}px`;
+          });
+        } else if (this.start !== 0 && this.start > this.currX) {
+          // right
+          if (this.tempLeftOffset >= -100) {
+            this.tempLeftOffset -= 10;
+          }
+          this.items.forEach(item => {
+            item.style.left = `${this.leftOffset + this.tempLeftOffset}px`;
+          });
+        }
+      });
       this.slideContainer.addEventListener('touchend', e => {
         this.end = e.changedTouches[0].clientX;
-        if (this.end - this.start < 0) {
+        this.tempLeftOffset = 0;
+        this.items.forEach(item => {
+          item.style.left = `${this.leftOffset}px`;
+        });
+        if (this.end - this.start < 0 && this.end - this.start < -100) {
           this.rightMove();
-        } else if (this.end - this.start > 0) {
+        } else if (this.end - this.start > 0 && this.end - this.start > 100) {
           this.leftMove();
         }
+        this.start = 0;
+        this.end = 0;
       });
       this.slideContainer.addEventListener('mousedown', e => {
         this.start = e.pageX;
       });
+      this.slideContainer.addEventListener('mousemove', e => {
+        this.currX = e.pageX;
+        if (this.start !== 0 && this.start < this.currX) {
+          // left
+          if (this.tempLeftOffset <= 100) {
+            this.tempLeftOffset += 10;
+          }
+          this.items.forEach(item => {
+            item.style.left = `${this.leftOffset + this.tempLeftOffset}px`;
+          });
+        } else if (this.start !== 0 && this.start > this.currX) {
+          // right
+          if (this.tempLeftOffset >= -100) {
+            this.tempLeftOffset -= 10;
+          }
+          this.items.forEach(item => {
+            item.style.left = `${this.leftOffset + this.tempLeftOffset}px`;
+          });
+        }
+      });
       this.slideContainer.addEventListener('mouseup', e => {
         this.end = e.pageX;
-        if (this.end - this.start < 0) {
+        this.tempLeftOffset = 0;
+        this.items.forEach(item => {
+          item.style.left = `${this.leftOffset}px`;
+        });
+        if (this.end - this.start < 0 && this.end - this.start < -100) {
           this.rightMove();
-        } else if (this.end - this.start > 0) {
+        } else if (this.end - this.start > 0 && this.end - this.start > 100) {
           this.leftMove();
         }
+        this.start = 0;
+        this.end = 0;
       });
       /* binding slide event end */
 
