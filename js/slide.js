@@ -5,6 +5,7 @@
       // parameter init
       this.selector = selector;
       this.setting = setting;
+      this.clientInnerWidth = window.innerWidth;
       // DOM init
       this.slideContainer = document.querySelector(
         `${this.selector}_cont_items`,
@@ -227,12 +228,15 @@
       /* binding slide event end */
 
       window.addEventListener('resize', () => {
-        if (!this.blCont.classList.contains('js_grid')) {
-          // slide
-          this.getSlideSize();
-        } else {
-          // grid
-          this.getGridSize();
+        if (this.clientInnerWidth !== window.innerWidth) {
+          if (!this.blCont.classList.contains('js_grid')) {
+            // slide
+            this.getSlideSize();
+          } else {
+            // grid
+            this.getGridSize();
+          }
+          this.clientInnerWidth = window.innerWidth;
         }
       });
     }
