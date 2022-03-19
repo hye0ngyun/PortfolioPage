@@ -228,6 +228,7 @@
       /* binding slide event end */
 
       window.addEventListener('resize', () => {
+        // to fix reize event occur when scroll event at mobile issue
         if (this.clientInnerWidth !== window.innerWidth) {
           if (!this.blCont.classList.contains('js_grid')) {
             // slide
@@ -364,7 +365,7 @@
           i.classList.remove('js_gridShow');
         }
       });
-      this.slideContainer.style.gap = `${this.gridGap}px`;
+      // this.slideContainer.style.gap = `${this.gridGap - 5}px`;
 
       this.gridPagination = document.querySelector('.el_pagination');
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);

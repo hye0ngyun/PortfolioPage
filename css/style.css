@@ -426,6 +426,8 @@ a {
   flex-wrap: wrap;
   position: static;
   /* cursor: pointer; */
+  justify-content: space-between;
+  align-content: space-between;
 }
 .bl_projects_cont_item {
   width: 300px;
