@@ -365,15 +365,21 @@
           i.classList.remove('js_gridShow');
         }
       });
-      // this.slideContainer.style.gap = `${this.gridGap - 5}px`;
-
+      this.slideContainer.style.gap = `${this.gridGap - 1}px`;
       this.gridPagination = document.querySelector('.el_pagination');
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
+
       // 페이지네이션 동적 생성
-      const maxGridPagination =
-        this.items.length / this.maxItems > 1
-          ? parseInt(this.items.length / this.maxItems, 10) + 1
-          : 0;
+      let maxGridPagination = 0;
+      if (this.items.length / this.maxItems > 1) {
+        if (this.items.length % this.maxItems === 0) {
+          maxGridPagination = parseInt(this.items.length / this.maxItems, 10);
+        } else {
+          maxGridPagination =
+            parseInt(this.items.length / this.maxItems, 10) + 1;
+        }
+      }
+
       this.gridPaginationElem = `
                                 <li class="js_page">${1}</li>
                                 `;
@@ -383,10 +389,6 @@
                                   `;
       }
       this.gridPagination.innerHTML = this.gridPaginationElem;
-      // this.gridPagination.innerHTML = `
-      // <li>${1}</li>
-      // <li>${2}</li>
-      // `;
 
       // 그리드 팝업
       document
@@ -422,6 +424,15 @@
         });
       });
 
+      this.items = document.querySelectorAll(
+        `${this.selector}_cont_item.show.js_gridShow`,
+      );
+      document.querySelector(
+        `${this.selector}_cont_items`,
+      ).style.minHeight = `${
+        this.gridItemWidth * Math.ceil(this.items.length / this.maxCol, 10) +
+        this.gridGap
+      }px`;
       [...this.gridPagination.children].forEach(item => {
         item.addEventListener('click', e => {
           [...this.gridPagination.children].forEach(i =>
@@ -445,6 +456,16 @@
               i.classList.remove('js_gridShow');
             }
           });
+          this.items = document.querySelectorAll(
+            `${this.selector}_cont_item.show.js_gridShow`,
+          );
+          document.querySelector(
+            `${this.selector}_cont_items`,
+          ).style.minHeight = `${
+            this.gridItemWidth *
+              Math.ceil(this.items.length / this.maxCol, 10) +
+            this.gridGap
+          }px`;
         });
       });
     }
@@ -478,28 +499,28 @@
         }
       });
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
+      this.slideTotalCount = this.items.length;
+
+      if (this.slideTotalCount === 0) {
+        // slide 결과 없는 경우 elem 생성해 보여주기
+        const elem = document.createElement('div');
+        elem.innerHTML = `
+          검색 결과와 일치하는 프로젝트가 존재하지 않습니다.
+          `;
+        elem.classList.add(`${this.selector.slice(1)}_cont_item`);
+        elem.classList.add('show');
+        elem.classList.add('noresult');
+        this.slideContainer.append(elem);
+      } else {
+        this.items.forEach(i => {
+          // slide 결과 없는 경우 생성한 elem 삭제
+          if (i.classList.contains('noresult')) {
+            i.remove();
+          }
+        });
+      }
       if (!this.blCont.classList.contains('js_grid')) {
         // slide
-        this.slideTotalCount = this.items.length;
-
-        if (this.slideTotalCount === 0) {
-          // slide 결과 없는 경우 elem 생성해 보여주기
-          const elem = document.createElement('div');
-          elem.innerHTML = `
-            <div>조건에 해당하는 결과가 존재하지 않습니다.</div>
-          `;
-          elem.classList.add(`${this.selector.slice(1)}_cont_item`);
-          elem.classList.add('show');
-          elem.classList.add('noresult');
-          this.slideContainer.append(elem);
-        } else {
-          this.items.forEach(i => {
-            // slide 결과 없는 경우 생성한 elem 삭제
-            if (i.classList.contains('noresult')) {
-              i.remove();
-            }
-          });
-        }
         this.getSlideSize(); // slide 크기 재조정
       } else {
         // grid
