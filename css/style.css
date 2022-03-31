@@ -41,6 +41,7 @@ html {
     'Trebuchet MS', sans-serif;
   background-color: #fafafa;
   color: #333;
+  scroll-behavior: smooth;
 }
 * {
   box-sizing: border-box;
@@ -460,6 +461,7 @@ a {
   text-align: center;
   line-height: 2.4rem;
   word-break: keep-all;
+  pointer-events: none;
 }
 .bl_projects.js_grid .bl_projects_cont_item {
   /* width: 300px;
@@ -594,7 +596,7 @@ a {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
-  line-height: 2rem;
+  line-height: 2.4rem;
 }
 .bl_projects_cont_item_desc_linkWrap {
   display: flex;
@@ -607,7 +609,7 @@ a {
   opacity: 0;
   height: 0;
 }
-.bl_projects_cont_item_desc:hover .el_linkBtn {
+.bl_projects_cont_item:hover .el_linkBtn {
   visibility: visible;
   opacity: 1;
   height: 35px;
@@ -764,6 +766,10 @@ a {
 .bl_about_desc > h3 {
   font-size: 4.8rem;
   line-height: initial;
+  font-weight: 700;
+}
+.bl_about_desc_p {
+  line-height: 2.4rem;
 }
 .bl_about_desc_btns {
   display: flex;
@@ -775,6 +781,7 @@ a {
   display: flex;
   gap: 50px;
   align-items: center;
+  justify-content: center;
 }
 .bl_contact_desc {
   font-size: 1.6rem;
@@ -785,9 +792,11 @@ a {
   font-size: 4.8rem;
   margin-top: 30px;
   margin-bottom: 50px;
+  font-weight: 700;
 }
 .bl_contact_img {
   width: 300px;
+  align-self: flex-end;
 }
 .bl_contact_table {
   line-height: 55px;
@@ -806,8 +815,9 @@ a {
   justify-content: center;
   align-items: center;
   height: 160px;
-  background-color: #b2e5fc;
+  background-color: #7b70e6aa;
   font-size: 1.6rem;
+  color: #111;
 }
 .bl_footer_desc {
   text-align: center;
@@ -837,6 +847,9 @@ a {
 }
 .hp_txt_bold {
   font-weight: bold;
+}
+.hp_wbka {
+  word-break: keep-all;
 }
 
 /* @@@ unique group @@@ */

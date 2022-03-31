@@ -33,7 +33,7 @@
       /* toggle start */
       // 토글 이벤트
       this.toggle = document.querySelector(`${this.selector} .el_toggle`);
-      this.blCont = document.querySelector(`${selector}`);
+      this.blCont = document.querySelector(`${this.selector}`);
       if (this.toggle != null) {
         this.toggle.addEventListener('click', () => {
           this.blCont.classList.toggle('js_grid');
@@ -92,9 +92,11 @@
       this.deleteAll = document.querySelector(`${this.selector} .un_deleteAll`);
       if (this.deleteAll != null) {
         this.deleteAll.addEventListener('click', () => {
-          document.querySelectorAll('.bl_projects_tags > span').forEach(ii => {
-            ii.remove();
-          });
+          document
+            .querySelectorAll(`${this.selector}_tags > span`)
+            .forEach(ii => {
+              ii.remove();
+            });
           this.filter.forEach(jj => {
             [...jj.children].forEach(kk => {
               kk.classList.remove('js_check');
@@ -158,7 +160,7 @@
         this.currX = e.touches[0].pageX;
         if (this.start !== 0 && this.start < this.currX) {
           // left
-          if (this.tempLeftOffset <= 100) {
+          if (this.tempLeftOffset <= 50) {
             this.tempLeftOffset += 10;
           }
           this.items.forEach(item => {
@@ -166,7 +168,7 @@
           });
         } else if (this.start !== 0 && this.start > this.currX) {
           // right
-          if (this.tempLeftOffset >= -100) {
+          if (this.tempLeftOffset >= -50) {
             this.tempLeftOffset -= 10;
           }
           this.items.forEach(item => {
@@ -180,9 +182,9 @@
         this.items.forEach(item => {
           item.style.left = `${this.leftOffset}px`;
         });
-        if (this.end - this.start < 0 && this.end - this.start < -100) {
+        if (this.end - this.start < 0 && this.end - this.start < -50) {
           this.rightMove();
-        } else if (this.end - this.start > 0 && this.end - this.start > 100) {
+        } else if (this.end - this.start > 0 && this.end - this.start > 50) {
           this.leftMove();
         }
         this.start = 0;
@@ -195,7 +197,7 @@
         this.currX = e.pageX;
         if (this.start !== 0 && this.start < this.currX) {
           // left
-          if (this.tempLeftOffset <= 100) {
+          if (this.tempLeftOffset <= 50) {
             this.tempLeftOffset += 10;
           }
           this.items.forEach(item => {
@@ -203,7 +205,7 @@
           });
         } else if (this.start !== 0 && this.start > this.currX) {
           // right
-          if (this.tempLeftOffset >= -100) {
+          if (this.tempLeftOffset >= -50) {
             this.tempLeftOffset -= 10;
           }
           this.items.forEach(item => {
@@ -217,9 +219,9 @@
         this.items.forEach(item => {
           item.style.left = `${this.leftOffset}px`;
         });
-        if (this.end - this.start < 0 && this.end - this.start < -100) {
+        if (this.end - this.start < 0 && this.end - this.start < -50) {
           this.rightMove();
-        } else if (this.end - this.start > 0 && this.end - this.start > 100) {
+        } else if (this.end - this.start > 0 && this.end - this.start > 50) {
           this.leftMove();
         }
         this.start = 0;
@@ -392,7 +394,7 @@
 
       // 그리드 팝업
       document
-        .querySelectorAll('.bl_projects.js_grid .bl_projects_cont_item')
+        .querySelectorAll(`${this.selector}.js_grid ${this.selector}_cont_item`)
         .forEach(ii => {
           ii.addEventListener('click', e => {
             // grid인 경우에만
