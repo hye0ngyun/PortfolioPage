@@ -789,11 +789,46 @@ a {
 .bl_career_accordion_header {
   padding: 15px;
   border: 1px solid #7b70e6aa;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.15s;
+  cursor: pointer;
+}
+.bl_career_accordion_item:last-child .bl_career_accordion_header {
+  border-bottom: 1px solid #7b70e6aa;
+}
+.bl_career_accordion_header_btn,
+.bl_career_accordion_header > span {
+  pointer-events: none;
 }
 .bl_career_accordion_cont {
   padding: 15px;
-  border: 1px solid #7b70e6aa;
+  /* border: 1px solid #7b70e6aa; */
   line-height: 2.4rem;
+  /* height: 0;
+  overflow: hidden; */
+  visibility: hidden;
+  height: 0;
+  /* overflow: hidden; */
+  padding: 0;
+  border: none;
+  transition: padding 0.15s;
+  color: #fff;
+}
+.bl_career_accordion_item.js_active .bl_career_accordion_cont {
+  padding: 15px;
+  border-right: 1px solid #7b70e6aa;
+  border-left: 1px solid #7b70e6aa;
+  line-height: 2.4rem;
+  height: unset;
+  padding: 15px;
+  visibility: visible;
+  color: #111;
+}
+.bl_career_accordion_item.js_active:last-child .bl_career_accordion_cont {
+  border-bottom: 1px solid #7b70e6aa;
 }
 .bl_career_accordion_cont ul li {
   list-style-type: disc;

@@ -52,11 +52,16 @@
               <h3 class="hp_mb_35">욕심쟁이 신입 개발자</h3>
               <p class="hp_mb_50 hp_wbka bl_about_desc_p">
                 안녕하세요 프론트엔드를 공부하는 개발자 신현균 입니다.<br />
-                학부시절 웹 프로그래밍 수업을 접한 뒤로 웹 개발에 흥미를 가지고
-                HTML, CSS, JS를 중점적으로 학습했습니다.<br />
-                현재는 프론트엔드 개발을 목표로 학습하고 있지만, 추후 백엔드를
-                공부해 API를 만들어보고 프론트엔드에서 호출 해보며 전반적인 웹
-                프로젝트의 개념을 잡아보고 싶습니다.<br /><br />
+                학부시절 웹 프로그래밍 수업을 통해 내가 작성한 코드로 실생활에
+                자주 접하던 웹 페이지를 만들 수 있다는것에 흥미를 가지고
+                개인적으로 웹 공부를 시작했습니다.<br />
+                웹 공부를 처음 하게 됐을 때 기본기가 중요하다고 생각해서 React,
+                Vue같은 유명한 프레임워크를 먼저 공부하기보다 HTML, CSS, JS를
+                중점적으로 공부했습니다.<br />
+                현재는 프론트엔드 개발자를 목표로 학습하고 있지만, 추후 백엔드를
+                공부해 API를 만들어보고 직접 만든 API를 프론트엔드에서 호출
+                해보며 전반적인 웹 프로젝트의 개념을 더 확실하게 잡아보고
+                싶습니다.<br /><br />
                 목마른 사람이 우물을 판다는 말이 있습니다.<br />
                 저는 프로그래밍에 목이 말라있고(학습욕구) 그렇기에 우물을
                 파고(찾아서 공부) 있습니다.
@@ -769,15 +774,29 @@
           <h2 class="el_ttl" id="contact">Career</h2>
           <div class="bl_career_acWrap">
             <div class="bl_career_accordion_item js_active">
-              <div class="bl_career_accordion_header">경력사항</div>
+              <div class="bl_career_accordion_header">
+                <span>경력사항</span>
+                <img
+                  src="./img/expand_more_black_24dp.svg"
+                  alt="moreBtn"
+                  class="bl_career_accordion_header_btn"
+                />
+              </div>
               <div class="bl_career_accordion_cont">
                 <ul>
                   <li>신한대학교(4년제) 컴퓨터공학과 졸업</li>
                 </ul>
               </div>
             </div>
-            <div class="bl_career_accordion_item js_active">
-              <div class="bl_career_accordion_header">대외활동</div>
+            <div class="bl_career_accordion_item">
+              <div class="bl_career_accordion_header">
+                <span>대외활동</span>
+                <img
+                  src="./img/expand_more_black_24dp.svg"
+                  alt="moreBtn"
+                  class="bl_career_accordion_header_btn"
+                />
+              </div>
               <div class="bl_career_accordion_cont">
                 <ul>
                   <li>(주)와이즈넛 인턴 21.09.01~21.12.21</li>
@@ -785,8 +804,15 @@
                 </ul>
               </div>
             </div>
-            <div class="bl_career_accordion_item js_active">
-              <div class="bl_career_accordion_header">자격증/어학/수상내역</div>
+            <div class="bl_career_accordion_item">
+              <div class="bl_career_accordion_header">
+                <span>자격증/어학/수상내역</span>
+                <img
+                  src="./img/expand_more_black_24dp.svg"
+                  alt="moreBtn"
+                  class="bl_career_accordion_header_btn"
+                />
+              </div>
               <div class="bl_career_accordion_cont">
                 <ul>
                   <li>자격증 - 정보처리기사 21.06 취득</li>
@@ -845,5 +871,6 @@
     <!-- wrap end -->
     <script src="./js/ready.js"></script>
     <script src="./js/slide.js"></script>
+    <script src="./js/accordion.js"></script>
   </body>
 </html>
