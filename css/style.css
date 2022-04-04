@@ -776,6 +776,32 @@ a {
   gap: 25px;
 }
 
+/* bl_career */
+.bl_career_acWrap {
+  font-size: 1.6rem;
+}
+.bl_career_accordion_item {
+}
+.bl_career_accordion_item.js_active .bl_career_accordion_header {
+  background-color: #7b70e6aa;
+  color: #fff;
+}
+.bl_career_accordion_header {
+  padding: 15px;
+  border: 1px solid #7b70e6aa;
+}
+.bl_career_accordion_cont {
+  padding: 15px;
+  border: 1px solid #7b70e6aa;
+  line-height: 2.4rem;
+}
+.bl_career_accordion_cont ul li {
+  list-style-type: disc;
+}
+.bl_career_accordion_cont ul {
+  padding-left: 20px;
+}
+
 /* bl_contact */
 .bl_contact_inner {
   display: flex;
