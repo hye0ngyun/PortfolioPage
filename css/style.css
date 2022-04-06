@@ -783,12 +783,12 @@ a {
 .bl_career_accordion_item {
 }
 .bl_career_accordion_item.js_active .bl_career_accordion_header {
-  background-color: #7b70e6aa;
+  background-color: #a59eec;
   color: #fff;
 }
 .bl_career_accordion_header {
   padding: 15px;
-  border: 1px solid #7b70e6aa;
+  border: 1px solid #a59eec;
   border-bottom: none;
   display: flex;
   align-items: center;
@@ -797,7 +797,7 @@ a {
   cursor: pointer;
 }
 .bl_career_accordion_item:last-child .bl_career_accordion_header {
-  border-bottom: 1px solid #7b70e6aa;
+  border-bottom: 1px solid #a59eec;
 }
 .bl_career_accordion_header_btn,
 .bl_career_accordion_header > span {
@@ -805,7 +805,7 @@ a {
 }
 .bl_career_accordion_cont {
   padding: 15px;
-  /* border: 1px solid #7b70e6aa; */
+  /* border: 1px solid #A59EEC; */
   line-height: 2.4rem;
   /* height: 0;
   overflow: hidden; */
@@ -819,8 +819,8 @@ a {
 }
 .bl_career_accordion_item.js_active .bl_career_accordion_cont {
   padding: 15px;
-  border-right: 1px solid #7b70e6aa;
-  border-left: 1px solid #7b70e6aa;
+  border-right: 1px solid #a59eec;
+  border-left: 1px solid #a59eec;
   line-height: 2.4rem;
   height: unset;
   padding: 15px;
@@ -828,7 +828,7 @@ a {
   color: #111;
 }
 .bl_career_accordion_item.js_active:last-child .bl_career_accordion_cont {
-  border-bottom: 1px solid #7b70e6aa;
+  border-bottom: 1px solid #a59eec;
 }
 .bl_career_accordion_cont ul li {
   list-style-type: disc;
