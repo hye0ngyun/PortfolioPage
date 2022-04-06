@@ -121,13 +121,23 @@
       this.tempLeftOffset = 0;
       this.currX = 0;
       try {
-        this.leftArrow.style.top = `${
-          this.slideContainer.clientHeight / 2 - this.leftArrow.clientHeight / 2
-        }px`;
-        this.rightArrow.style.top = `${
-          this.slideContainer.clientHeight / 2 -
-          this.rightArrow.clientHeight / 2
-        }px`;
+        if (this.selector === '.bl_projects') {
+          this.leftArrow.style.top = `${
+            this.slideContainer.clientHeight / 2 -
+            this.leftArrow.clientHeight / 2
+          }px`;
+          this.rightArrow.style.top = `${
+            this.slideContainer.clientHeight / 2 -
+            this.rightArrow.clientHeight / 2
+          }px`;
+        } else if (this.selector === '.bl_stacks') {
+          this.leftArrow.style.top = `${
+            550 / 2 - this.leftArrow.clientHeight / 2
+          }px`;
+          this.rightArrow.style.top = `${
+            550 / 2 - this.rightArrow.clientHeight / 2
+          }px`;
+        }
       } catch (error) {
         console.log(error);
       }
@@ -242,6 +252,9 @@
           this.clientInnerWidth = window.innerWidth;
         }
       });
+      if (this.selector === '.bl_stacks') {
+        this.getGridSize();
+      }
     }
 
     leftMove() {
@@ -285,9 +298,15 @@
       this.items = document.querySelectorAll(`${this.selector}_cont_item.show`);
       this.leftOffset = 0;
       this.slideCurrShow = 0;
-      document.querySelector(
-        `${this.selector}_cont_items`,
-      ).style.minHeight = `400px`;
+      if (this.selector === '.bl_projects') {
+        document.querySelector(
+          `${this.selector}_cont_items`,
+        ).style.minHeight = `400px`;
+      } else if (this.selector === '.bl_stacks') {
+        document.querySelector(
+          `${this.selector}_cont_items`,
+        ).style.minHeight = `550px`;
+      }
       this.containerWidth = document.querySelector(
         `${this.selector}_cont`,
       ).clientWidth;
@@ -310,12 +329,31 @@
     }
 
     getGridSize() {
-      if (window.innerWidth >= 1240) {
-        this.maxCol = 4;
-      } else if (window.innerWidth >= 768) {
-        this.maxCol = 3;
-      } else {
-        this.maxCol = 2;
+      // if (window.innerWidth >= 1240) {
+      //   this.maxCol = 4;
+      // } else if (window.innerWidth >= 768) {
+      //   this.maxCol = 3;
+      // } else {
+      //   this.maxCol = 2;
+      // }
+      if (this.selector === '.bl_projects') {
+        if (window.innerWidth >= 1240) {
+          this.maxCol = 4;
+        } else if (window.innerWidth >= 768) {
+          this.maxCol = 3;
+        } else {
+          this.maxCol = 2;
+        }
+      } else if (this.selector === '.bl_stacks') {
+        if (window.innerWidth >= 1240) {
+          this.maxCol = 6;
+        } else if (window.innerWidth >= 768) {
+          this.maxCol = 5;
+        } else if (window.innerWidth >= 500) {
+          this.maxCol = 4;
+        } else {
+          this.maxCol = 3;
+        }
       }
 
       this.items = document.querySelectorAll(`${this.selector}_cont_item`);
@@ -331,7 +369,7 @@
       });
       // this.maxCol = 4;
       this.maxItems = this.maxRow * this.maxCol;
-      this.gridGap = 30;
+      this.gridGap = 20;
       this.gridCurrPage = 1;
       this.containerWidth = document.querySelector(
         `${this.selector}_cont`,
@@ -404,13 +442,17 @@
                 .classList.contains('js_grid')
             ) {
               // js_on 추가 - 팝업 열기
-              e.target.parentElement.children[1].classList.add('js_on');
+              e.target.parentElement.children[
+                e.target.parentElement.children.length - 1
+              ].classList.add('js_on');
               document.querySelector('.el_popupBack').classList.add('js_on');
               document
                 .querySelector('.el_popupBack')
                 .addEventListener('click', e2 => {
                   // js_on 삭제 - 팝업 닫기
-                  e.target.parentElement.children[1].classList.remove('js_on');
+                  e.target.parentElement.children[
+                    e.target.parentElement.children.length - 1
+                  ].classList.remove('js_on');
                   e2.target.classList.remove('js_on');
                 });
             }
