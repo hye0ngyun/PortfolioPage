@@ -292,6 +292,26 @@ a {
 .el_popupBack.js_on {
   display: block;
 }
+.el_slideHelper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+.js_grid .el_slideHelper {
+  display: none;
+}
+.el_gridHelper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+.js_grid .el_gridHelper {
+  display: flex;
+}
 
 /* @@@ block group @@@ */
 /* bl_header */
@@ -328,6 +348,13 @@ a {
 .bl_nav > ul {
   display: flex;
   gap: 30px;
+}
+.bl_nav > ul > li.js_currNav a {
+  background-color: var(--btn-color);
+  padding: 5px 10px;
+  border-radius: 100px;
+  color: #fff;
+  box-shadow: 0 0 10px var(--btn-color);
 }
 
 /* bl_banner */
@@ -549,6 +576,35 @@ a {
   border: 0.5px solid #3333;
   /* box-shadow: ; */
   /* width: inherit; */
+  position: relative;
+  cursor: pointer;
+}
+.bl_projects_cont_item_img_hov {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background-color: #555a;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.15s;
+}
+.bl_projects.js_grid
+  .bl_projects_cont_item_imgWrap:hover
+  .bl_projects_cont_item_img_hov {
+  display: flex;
+  opacity: 1;
+}
+
+.bl_projects_cont_item_img_hov_span {
+  display: inline-block;
+  border-radius: 15px;
+  font-size: 1.6rem;
+  background-color: #7b70e6;
+  padding: 5px 15px;
+  color: #fff;
 }
 .bl_projects_cont_item_desc {
   width: 100%;
@@ -779,6 +835,7 @@ a {
   max-width: 100px;
   width: 100%;
   max-height: 150px;
+  height: 100%;
   pointer-events: none;
 }
 .bl_stacks_cont_item_img {
@@ -893,6 +950,7 @@ a {
   justify-content: space-between;
   transition: 0.15s;
   cursor: pointer;
+  background-color: #c1bcf0aa;
 }
 .bl_career_accordion_item:last-child .bl_career_accordion_header {
   border-bottom: 1px solid #a59eec;
@@ -974,13 +1032,15 @@ a {
   justify-content: center;
   align-items: center;
   height: 160px;
-  background-color: #7b70e6aa;
+  background-color: #7b70e6cc;
   font-size: 1.6rem;
-  color: #111;
+  color: #fff;
+  padding: 0 20px;
 }
 .bl_footer_desc {
   text-align: center;
   line-height: 24px;
+  word-break: keep-all;
 }
 
 /* @@@ helper group @@@ */
