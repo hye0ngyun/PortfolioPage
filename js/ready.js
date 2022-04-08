@@ -11,7 +11,7 @@
   }, 100);
   window.addEventListener('scroll', () => {
     const currScroll = this.scrollY + 30;
-    if (currScroll !== 0) {
+    if (currScroll >= 50) {
       document.querySelector('.bl_header').classList.add('js_active');
     } else {
       document.querySelector('.bl_header').classList.remove('js_active');
