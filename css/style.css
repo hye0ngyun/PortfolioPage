@@ -1133,6 +1133,14 @@ a {
   display: block;
 }
 
+.bl_section {
+  opacity: 0;
+  transition: 1s;
+}
+.bl_section.js_fadein_active {
+  opacity: 1;
+}
+
 @media (max-width: 1024px) {
   /* layout */
   .ly_main {
