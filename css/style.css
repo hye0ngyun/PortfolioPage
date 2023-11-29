@@ -1324,3 +1324,10 @@ a {
     height: 22px;
   }
 }
+.logo {
+  background-color: red;
+  -webkit-mask: var(--logo-url) no-repeat center;
+  mask: var(--logo-url) no-repeat center;
+  width: 100%;
+  height: 100%;
+}
