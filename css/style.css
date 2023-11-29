@@ -679,6 +679,7 @@ a {
   line-height: 2rem;
   justify-self: flex-end;
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   flex-shrink: 0;
 }

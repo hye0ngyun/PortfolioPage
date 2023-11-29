@@ -301,7 +301,7 @@
       if (this.selector === '.bl_projects') {
         document.querySelector(
           `${this.selector}_cont_items`,
-        ).style.minHeight = `400px`;
+        ).style.minHeight = `500px`;
       } else if (this.selector === '.bl_stacks') {
         document.querySelector(
           `${this.selector}_cont_items`,

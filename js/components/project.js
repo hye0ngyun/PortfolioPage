@@ -1,6 +1,58 @@
 {
   const projects = [
     {
+      img: 'project/rezn105.png',
+      title: '[두산] 친환경 플랫폼 리즌105',
+      description:
+        '백엔드 솔루션 shopby api, 웹 프레임워크 svelte를 활용하여 쇼핑몰 개발',
+      githubLink: '',
+      viewLink: 'https://rezn105.com/',
+      dataTag: {
+        languages: 'HTML/CSS,JavaScript',
+        domains: 'Frontend',
+        frameworks: 'Svelte',
+      },
+    },
+    {
+      img: 'project/chak.png',
+      title: '[한국조폐공사] 지역화폐 착',
+      description:
+        '웹 프레임워크 nextjs를 활용하여 지역화폐 충전 및 거래 기능이 있는 사용자 웹앱 개발',
+      githubLink: '',
+      viewLink: 'https://localpay.komscochak.com/',
+      dataTag: {
+        languages: 'HTML/CSS,JavaScript',
+        domains: 'Frontend',
+        frameworks: 'Next.js,React.js',
+      },
+    },
+    {
+      img: 'project/shopby-skin-vegan.png',
+      title: '[NHN] 샵바이 스킨 - 더비건',
+      description:
+        '백엔드 솔루션 shopby api, 웹 프레임워크 svelte를 활용하여 쇼핑몰 스킨 개발',
+      githubLink: '',
+      viewLink: 'https://nextinnovation.shopby.co.kr/',
+      dataTag: {
+        languages: 'HTML/CSS,JavaScript',
+        domains: 'Frontend',
+        frameworks: 'Svelte',
+      },
+    },
+    {
+      img: 'project/trello-clone.png',
+      title: 'Trello Clone',
+      description:
+        'nextjs, recoil, react-beautiful-dnd를 활용하여 trello 기능을 클론하였습니다. Board, Task 각각 위치를 변경시킬 수 있고, 각 Board별 Task를 추가 및 삭제 할 수 있습니다.',
+      githubLink: 'https://github.com/hye0ngyun/trello-clone',
+      viewLink: 'https://hye0ngyun.github.io/trello-clone/',
+      dataTag: {
+        languages: 'HTML/CSS,JavaScript',
+        domains: 'Frontend',
+        frameworks: 'React.js,Next.js',
+      },
+    },
+    {
       img: 'project_momentum-clone.png',
       title: 'Momentum Clone',
       description:
@@ -9,7 +61,7 @@
       viewLink: 'https://hye0ngyun.github.io/momentum-clone/',
       dataTag: {
         languages: 'HTML/CSS,JavaScript',
-        domains: 'Frontend,Publishing',
+        domains: 'Frontend',
         frameworks: '',
       },
     },
@@ -21,8 +73,8 @@
       githubLink: 'https://github.com/hye0ngyun/sal-saver',
       viewLink: 'https://hye0ngyun.github.io/sal-saver/',
       dataTag: {
-        languages: 'HTML/CSS,JavaScript',
-        domains: 'Frontend,Publishing',
+        languages: 'HTML/CSS,JavaScript,Python',
+        domains: 'Frontend',
         frameworks: '',
       },
     },
@@ -35,8 +87,8 @@
       viewLink: 'https://hye0ngyun.github.io/vue-todolist/',
       dataTag: {
         languages: 'HTML/CSS,JavaScript',
-        domains: 'Frontend,Publishing',
-        frameworks: '',
+        domains: 'Frontend',
+        frameworks: 'Vue.js',
       },
     },
     {
@@ -48,7 +100,7 @@
       viewLink: '',
       dataTag: {
         languages: 'HTML/CSS,JavaScript',
-        domains: 'Frontend,Publishing',
+        domains: 'Frontend',
         frameworks: '',
       },
     },
@@ -62,7 +114,7 @@
       viewLink: '',
       dataTag: {
         languages: 'HTML/CSS,JavaScript',
-        domains: 'Publishing',
+        domains: 'Frontend',
         frameworks: '',
       },
     },
@@ -76,7 +128,7 @@
       viewLink: '',
       dataTag: {
         languages: 'HTML/CSS,JavaScript',
-        domains: 'Publishing',
+        domains: 'Frontend',
         frameworks: '',
       },
     },
@@ -90,7 +142,7 @@
       viewLink: '',
       dataTag: {
         languages: 'HTML/CSS,JavaScript',
-        domains: 'Publishing',
+        domains: 'Frontend',
         frameworks: '',
       },
     },
@@ -126,8 +178,8 @@
     </div>
     <div class="bl_projects_cont_item_desc_linkWrap">
     ${
-      project.githubLink &&
-      `<a
+      project.githubLink
+        ? `<a
     href="${project.githubLink}"
     class="el_linkBtn"
     target="_blank"
@@ -135,15 +187,17 @@
       src="./img/link_white_24dp.svg"
       alt="link_img"
   /></a>`
+        : ''
     }
   ${
-    project.viewLink &&
-    `<a
+    project.viewLink
+      ? `<a
         href="${project.viewLink}"
         class="el_linkBtn"
         target="_blank"
         >View<img src="./img/link_white_24dp.svg" alt="link_img"
       /></a>`
+      : ''
   }
     </div>
     <div class="bl_projects_cont_item_desc_tags">
