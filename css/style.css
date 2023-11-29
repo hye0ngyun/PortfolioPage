@@ -1134,10 +1134,13 @@ a {
 }
 
 .bl_section {
+  position: relative;
+  top: 100px;
   opacity: 0;
   transition: 1s;
 }
 .bl_section.js_fadein_active {
+  top: 0;
   opacity: 1;
 }
 
