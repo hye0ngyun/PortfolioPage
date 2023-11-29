@@ -498,13 +498,14 @@ a {
   display: flex;
   flex: 0 0 auto;
 }
-.bl_projects_cont_item:hover .bl_projects_cont_item_imgWrap {
-  height: 0;
+.bl_projects_cont_item_desc:hover .bl_projects_cont_item_imgWrap {
+  /* height: 0; */
   /* position: absolute;
   z-index: -1;
   top: 0; */
 }
-.bl_projects_cont_item:hover .bl_projects_cont_item_desc {
+.bl_projects_cont_item_desc:hover {
+  flex-shrink: 0;
   background-color: #f8f8f8;
   height: 100%;
   margin-top: auto;
@@ -512,14 +513,14 @@ a {
 .bl_projects.bl_projects.js_grid:hover .bl_projects_cont_item_desc {
   background-color: #eee;
 }
-.bl_projects_cont_item:hover .bl_projects_cont_item_desc_link {
+.bl_projects_cont_item_desc:hover .bl_projects_cont_item_desc_link {
   visibility: visible;
   height: 35px;
   opacity: 1;
   margin-bottom: 20px;
   padding: 5px 10px;
 }
-.bl_projects_cont_item:hover .bl_projects_cont_item_desc_p {
+.bl_projects_cont_item_desc:hover .bl_projects_cont_item_desc_p {
   -webkit-line-clamp: unset;
 }
 .bl_projects_cont_item_img {
@@ -646,7 +647,7 @@ a {
   opacity: 0;
   height: 0;
 }
-.bl_projects_cont_item:hover .el_linkBtn {
+.bl_projects_cont_item_desc:hover .el_linkBtn {
   visibility: visible;
   opacity: 1;
   height: 35px;
