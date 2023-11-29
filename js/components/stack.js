@@ -153,7 +153,7 @@
   stacks.forEach(el => {
     elem += `<li class="list__item" style="--clr: ${el.color}">
     <div class="box">
-      <img src="/img/logo/${el.img}" alt="" />
+      <img src="./img/logo/${el.img}" alt="" />
       <div class="content">
         <h3>${el.domain}</h3>
         <h4>${el.name}</h4>
