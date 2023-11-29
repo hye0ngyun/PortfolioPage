@@ -149,32 +149,29 @@
     <div class="bl_projects_cont_item_desc_tags">
     ${
       project.dataTag.domains.length
-        ? `<div>
-        <span class="hp_txt_bold">언어: </span>
+        ? `
         ${project.dataTag.languages
           .split(',')
           .map(el => `<span class="el_tag">${el}</span>`)}
-      </div>`
+      `.replace(/,/gi, '')
         : ''
     }
       ${
         project.dataTag.domains.length
-          ? `<div>
-        <span class="hp_txt_bold">분야: </span>
+          ? `
         ${project.dataTag.domains
           .split(',')
           .map(el => `<span class="el_tag">${el}</span>`)}
-      </div>`
+      `.replace(/,/gi, '')
           : ''
       }
       ${
         project.dataTag.frameworks.length
-          ? `<div>
-      <span class="hp_txt_bold">프레임워크: </span>
+          ? `
       ${project.dataTag.frameworks
         .split(',')
         .map(el => `<span class="el_tag">${el}</span>`)}
-    </div>`
+    `.replace(/,/gi, '')
           : ''
       }
     </div>
