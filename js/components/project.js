@@ -8,7 +8,7 @@
       githubLink: '',
       viewLink: 'https://rezn105.com/',
       dataTag: {
-        languages: 'HTML/CSS,JavaScript',
+        languages: 'HTML/CSS,JavaScript,TypeScript',
         domains: 'Frontend',
         frameworks: 'Svelte',
       },
@@ -21,7 +21,7 @@
       githubLink: '',
       viewLink: 'https://localpay.komscochak.com/',
       dataTag: {
-        languages: 'HTML/CSS,JavaScript',
+        languages: 'HTML/CSS,JavaScript,TypeScript',
         domains: 'Frontend',
         frameworks: 'Next.js,React.js',
       },
@@ -34,7 +34,7 @@
       githubLink: '',
       viewLink: 'https://nextinnovation.shopby.co.kr/',
       dataTag: {
-        languages: 'HTML/CSS,JavaScript',
+        languages: 'HTML/CSS,JavaScript,TypeScript',
         domains: 'Frontend',
         frameworks: 'Svelte',
       },
@@ -47,7 +47,7 @@
       githubLink: 'https://github.com/hye0ngyun/trello-clone',
       viewLink: 'https://hye0ngyun.github.io/trello-clone/',
       dataTag: {
-        languages: 'HTML/CSS,JavaScript',
+        languages: 'HTML/CSS,JavaScript,TypeScript',
         domains: 'Frontend',
         frameworks: 'React.js,Next.js',
       },
@@ -86,7 +86,7 @@
       githubLink: 'https://github.com/hye0ngyun/vue-todolistr',
       viewLink: 'https://hye0ngyun.github.io/vue-todolist/',
       dataTag: {
-        languages: 'HTML/CSS,JavaScript',
+        languages: 'HTML/CSS,JavaScript,TypeScript',
         domains: 'Frontend',
         frameworks: 'Vue.js',
       },
